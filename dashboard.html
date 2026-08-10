@@ -1,33 +1,94 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>Student Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentHub - Dashboard</title>
 </head>
 
 <body>
 
-    <h1>Student Portal Dashboard</h1>
+    <a href="#main-content">Skip to main content</a>
 
-    <hr>
+    <header>
+        <h1>StudentHub</h1>
 
-    <a href="homepage.html">Home</a> |
-    
+        <nav aria-label="Main navigation">
+            <a href="homepage.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="events.html">Events</a>
+            <a href="profile.html">Profile</a>
+            <a href="register.html">Register</a>
+            <a href="login.html">Login</a>
+            <a href="contact.html">Contact</a>
+            <a href="faq.html">FAQ</a>
+            <a href="feedback.html">Feedback</a>
+        </nav>
+    </header>
 
-    
-    <hr>
+    <main id="main-content">
 
-    <h2>Welcome Student</h2>
+        <nav aria-label="Breadcrumb">
+            <a href="homepage.html">Home</a>
+            &gt;
+            <span aria-current="page">Dashboard</span>
+        </nav>
 
-    <p>Select any option below.</p>
+        <section>
+            <h2>Student Dashboard</h2>
 
-    <ul>
-        <li><a href="profile.html">Student Profile</a></li>
-        <li><a href="attendance.html">Attendance</a></li>
-        <li><a href="results.html">Results</a></li>
-        <li><a href="events.html">Events</a></li>
-    </ul>
+            <p>
+                Welcome to your StudentHub dashboard.
+            </p>
+        </section>
+
+        <section>
+            <h2>Student Services</h2>
+
+            <ul>
+                <li>
+                    <a href="profile.html">View Profile</a>
+                </li>
+
+                <li>
+                    <a href="attendance.html">View Attendance</a>
+                </li>
+
+                <li>
+                    <a href="results.html">View Results</a>
+                </li>
+
+                <li>
+                    <a href="events.html">View Events</a>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Announcements</h2>
+
+            <article>
+                <h3>Semester Examination</h3>
+                <p>
+                    Students are advised to check the examination
+                    schedule regularly.
+                </p>
+            </article>
+
+            <article>
+                <h3>Upcoming University Event</h3>
+                <p>
+                    Check the Events page for upcoming activities.
+                </p>
+            </article>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 StudentHub. All rights reserved.</p>
+    </footer>
 
 </body>
-
 </html>

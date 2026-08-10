@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudentHub - Login</title>
+    <title>StudentHub - Contact</title>
 </head>
 
 <body>
@@ -32,54 +32,70 @@
         <nav aria-label="Breadcrumb">
             <a href="homepage.html">Home</a>
             &gt;
-            <span aria-current="page">Login</span>
+            <span aria-current="page">Contact</span>
         </nav>
 
         <section>
-            <h2>Student Login</h2>
+            <h2>Contact StudentHub</h2>
+
+            <p>
+                If you have any questions or problems, contact the
+                StudentHub support team.
+            </p>
+
+            <address>
+                <p>Email: support@studenthub.example</p>
+                <p>Phone: +91 98765 43210</p>
+                <p>University Student Support Centre</p>
+            </address>
+        </section>
+
+        <section>
+            <h2>Send Us a Message</h2>
 
             <form action="#" method="post">
 
                 <p>
-                    <label for="enrollment">Enrollment Number:</label><br>
+                    <label for="name">Full Name:</label><br>
                     <input
                         type="text"
-                        id="enrollment"
-                        name="enrollment"
-                        autocomplete="username"
+                        id="name"
+                        name="name"
                         required>
                 </p>
 
                 <p>
-                    <label for="password">Password:</label><br>
+                    <label for="email">Email Address:</label><br>
                     <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        autocomplete="current-password"
+                        type="email"
+                        id="email"
+                        name="email"
                         required>
                 </p>
 
                 <p>
+                    <label for="subject">Subject:</label><br>
                     <input
-                        type="checkbox"
-                        id="remember"
-                        name="remember">
-
-                    <label for="remember">Remember me</label>
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        required>
                 </p>
 
-                <button type="submit">Login</button>
+                <p>
+                    <label for="message">Message:</label><br>
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="6"
+                        cols="40"
+                        required></textarea>
+                </p>
+
+                <button type="submit">Send Message</button>
 
             </form>
         </section>
-
-        <aside>
-            <h2>New Student?</h2>
-            <p>
-                <a href="register.html">Create a new account</a>
-            </p>
-        </aside>
 
     </main>
 
