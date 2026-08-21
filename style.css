@@ -1,0 +1,449 @@
+/* ================================
+   StudentHub - Responsive CSS
+   Practical 3
+   ================================ */
+
+/* ---------- Reset ---------- */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f7fb;
+    color: #1f2937;
+}
+
+/* ---------- Header ---------- */
+
+header {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 20px;
+}
+
+header h1 {
+    margin: 0 0 15px;
+    font-size: 2rem;
+}
+
+/* ---------- Navigation ---------- */
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+nav a:hover,
+nav a:focus {
+    background-color: #2563eb;
+    text-decoration: underline;
+}
+
+/* ---------- Skip Link ---------- */
+
+body > a:first-child {
+    position: absolute;
+    left: -9999px;
+    top: 10px;
+    z-index: 1000;
+}
+
+body > a:first-child:focus {
+    left: 10px;
+    background-color: white;
+    color: #1e3a8a;
+    padding: 10px;
+    border: 2px solid #1e3a8a;
+}
+
+/* ---------- Main ---------- */
+
+main {
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+/* ---------- Breadcrumb ---------- */
+
+main > nav[aria-label="Breadcrumb"] {
+    background-color: white;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+main > nav[aria-label="Breadcrumb"] a {
+    color: #1d4ed8;
+    text-decoration: none;
+}
+
+main > nav[aria-label="Breadcrumb"] a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Sections ---------- */
+
+section {
+    background-color: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+section h2 {
+    margin-top: 0;
+    color: #1e3a8a;
+}
+
+/* ---------- Article Grid ---------- */
+
+section:has(article) {
+    display: block;
+}
+
+article {
+    background-color: #f8fafc;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 8px;
+    border-left: 4px solid #2563eb;
+}
+
+article h3 {
+    margin-top: 0;
+    color: #1e40af;
+}
+
+/* ---------- Dashboard Grid ---------- */
+
+section ul {
+    padding-left: 20px;
+}
+
+section ul li {
+    margin-bottom: 10px;
+}
+
+section ul li a {
+    color: #1d4ed8;
+}
+
+/* ---------- Forms ---------- */
+
+form {
+    max-width: 700px;
+}
+
+form p {
+    margin-bottom: 18px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 11px;
+    margin-top: 6px;
+    border: 1px solid #9ca3af;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 3px solid #93c5fd;
+    border-color: #2563eb;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    width: auto;
+    margin-right: 6px;
+}
+
+fieldset {
+    border: 1px solid #9ca3af;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 6px;
+}
+
+legend {
+    font-weight: bold;
+    padding: 0 8px;
+}
+
+/* ---------- Buttons ---------- */
+
+button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button:hover,
+button:focus {
+    background-color: #1e40af;
+}
+
+/* ---------- Tables ---------- */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+caption {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+th,
+td {
+    border: 1px solid #d1d5db;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #dbeafe;
+    color: #1e3a8a;
+}
+
+/* ---------- Address ---------- */
+
+address {
+    background-color: #eff6ff;
+    padding: 20px;
+    border-radius: 8px;
+    font-style: normal;
+}
+
+/* ---------- Aside ---------- */
+
+aside {
+    background-color: #e0f2fe;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    border-left: 5px solid #0284c7;
+}
+
+aside h2 {
+    margin-top: 0;
+}
+
+/* ---------- Footer ---------- */
+
+footer {
+    background-color: #1e3a8a;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* ---------- Images ---------- */
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* =================================
+   FLEXBOX EXAMPLE
+   ================================= */
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.flex-item {
+    flex: 1 1 250px;
+    background-color: #eff6ff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* =================================
+   CSS GRID
+   ================================= */
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.grid-item {
+    background-color: #eff6ff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* =================================
+   DESKTOP
+   ================================= */
+
+@media (min-width: 1024px) {
+
+    header {
+        padding: 25px 5%;
+    }
+
+    header h1 {
+        font-size: 2.3rem;
+    }
+
+    main {
+        width: 85%;
+    }
+
+    .events-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .events-grid article {
+        margin: 0;
+    }
+}
+
+/* =================================
+   TABLET
+   ================================= */
+
+@media (min-width: 601px) and (max-width: 1023px) {
+
+    header {
+        padding: 20px;
+    }
+
+    main {
+        width: 92%;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .events-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .events-grid article {
+        margin: 0;
+    }
+}
+
+/* =================================
+   MOBILE
+   ================================= */
+
+@media (max-width: 600px) {
+
+    body {
+        font-size: 15px;
+    }
+
+    header {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    nav a {
+        display: block;
+        width: 100%;
+        padding: 10px;
+    }
+
+    main {
+        width: 94%;
+        margin: 20px auto;
+    }
+
+    section {
+        padding: 18px;
+    }
+
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+
+    .events-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .events-grid article {
+        margin: 0;
+    }
+
+    .flex-container {
+        flex-direction: column;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    input,
+    select,
+    textarea {
+        font-size: 16px;
+    }
+
+    footer {
+        padding: 20px 15px;
+    }
+}
