@@ -447,3 +447,235 @@ img {
         padding: 20px 15px;
     }
 }
+
+/* =========================================
+   PRACTICAL 4 - JAVASCRIPT UI
+   ========================================= */
+
+
+/* =========================================
+   HAMBURGER MENU
+   ========================================= */
+
+#menuButton {
+    display: none;
+}
+
+@media (max-width: 600px) {
+
+    #menuButton {
+        display: block;
+        background-color: #2563eb;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    #mainNav {
+        display: none;
+        flex-direction: column;
+    }
+
+    #mainNav.show {
+        display: flex;
+    }
+}
+
+
+/* =========================================
+   THEME BUTTON
+   ========================================= */
+
+#themeButton {
+    margin-top: 10px;
+}
+
+
+/* =========================================
+   DARK THEME
+   ========================================= */
+
+body.dark-theme {
+    background-color: #111827;
+    color: #f9fafb;
+}
+
+body.dark-theme header {
+    background-color: #030712;
+}
+
+body.dark-theme section {
+    background-color: #1f2937;
+    color: #f9fafb;
+}
+
+body.dark-theme article {
+    background-color: #374151;
+    color: #f9fafb;
+}
+
+body.dark-theme aside {
+    background-color: #164e63;
+}
+
+body.dark-theme input,
+body.dark-theme select,
+body.dark-theme textarea {
+    background-color: #374151;
+    color: white;
+    border-color: #6b7280;
+}
+
+body.dark-theme th {
+    background-color: #374151;
+    color: white;
+}
+
+body.dark-theme td {
+    border-color: #6b7280;
+}
+
+
+/* =========================================
+   NOTIFICATION BANNER
+   ========================================= */
+
+#notification {
+    background-color: #dbeafe;
+    color: #1e3a8a;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+#closeNotification {
+    background-color: transparent;
+    color: #1e3a8a;
+    border: 2px solid #1e3a8a;
+    padding: 5px 10px;
+}
+
+
+/* =========================================
+   MODAL
+   ========================================= */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.65);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background-color: white;
+    color: #1f2937;
+    padding: 30px;
+    width: 90%;
+    max-width: 550px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+#closeModal {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    background-color: #dc2626;
+    padding: 7px 12px;
+}
+
+
+/* =========================================
+   FAQ
+   ========================================= */
+
+.faq-item {
+    margin-bottom: 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.faq-question {
+    width: 100%;
+    text-align: left;
+    background-color: #eff6ff;
+    color: #1e3a8a;
+    border-radius: 0;
+    padding: 15px;
+    font-weight: bold;
+}
+
+.faq-question:hover {
+    background-color: #dbeafe;
+}
+
+.faq-answer {
+    padding: 15px;
+    background-color: white;
+}
+
+
+/* =========================================
+   SLIDER
+   ========================================= */
+
+.slider {
+    position: relative;
+    max-width: 900px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.slide {
+    display: none;
+    padding: 40px;
+    text-align: center;
+    background-color: #eff6ff;
+    border-radius: 10px;
+}
+
+.slide.active-slide {
+    display: block;
+}
+
+.slider-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+
+/* =========================================
+   TRANSITION EFFECTS
+   ========================================= */
+
+button,
+article,
+a {
+    transition: all 0.2s ease;
+}
+
+article:hover {
+    transform: translateY(-3px);
+}
+
+button:hover {
+    transform: translateY(-1px);
+}

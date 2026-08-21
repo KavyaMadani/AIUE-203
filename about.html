@@ -12,21 +12,42 @@
     <a href="#main-content">Skip to main content</a>
 
     <header>
-        <h1>StudentHub</h1>
 
-        <nav aria-label="Main navigation">
-            <a href="homepage.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="events.html">Events</a>
-            <a href="profile.html">Profile</a>
-            <a href="register.html">Register</a>
-            <a href="login.html">Login</a>
-            <a href="contact.html">Contact</a>
-            <a href="faq.html">FAQ</a>
-            <a href="feedback.html">Feedback</a>
-        </nav>
-    </header>
+    <h1>StudentHub</h1>
+
+    <button
+        id="menuButton"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false">
+        ☰ Menu
+    </button>
+
+    <nav
+        id="mainNav"
+        aria-label="Main navigation">
+
+        <a href="homepage.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="events.html">Events</a>
+        <a href="profile.html">Profile</a>
+        <a href="attendance.html">Attendance</a>
+        <a href="results.html">Results</a>
+        <a href="contact.html">Contact</a>
+        <a href="faq.html">FAQ</a>
+        <a href="feedback.html">Feedback</a>
+        <a href="login.html">Login</a>
+
+    </nav>
+
+    <button
+        id="themeButton"
+        type="button">
+        🌙 Dark Mode
+    </button>
+
+</header>
 
     <main id="main-content">
 
@@ -87,6 +108,6 @@
     <footer>
         <p>&copy; 2026 StudentHub. All rights reserved.</p>
     </footer>
-
+<script src="script.js"></script>
 </body>
 </html>
