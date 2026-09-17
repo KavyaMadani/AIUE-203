@@ -1,10 +1,3 @@
-/* ================================
-   StudentHub - Responsive CSS
-   Practical 3
-   ================================ */
-
-/* ---------- Reset ---------- */
-
 * {
     box-sizing: border-box;
 }
@@ -15,149 +8,124 @@ html {
 
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, sans-serif;
     line-height: 1.6;
-    background-color: #f4f7fb;
-    color: #1f2937;
+    background: #f4f7fb;
+    color: #222;
 }
 
-/* ---------- Header ---------- */
-
 header {
-    background-color: #1e3a8a;
+    background: #173b67;
     color: white;
-    padding: 20px;
+    padding: 15px 5%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 header h1 {
-    margin: 0 0 15px;
-    font-size: 2rem;
+    margin: 0;
+    margin-right: auto;
 }
-
-/* ---------- Navigation ---------- */
 
 nav {
     display: flex;
+    gap: 8px;
     flex-wrap: wrap;
-    gap: 10px;
 }
 
 nav a {
     color: white;
     text-decoration: none;
-    padding: 8px 12px;
+    padding: 8px 10px;
     border-radius: 5px;
 }
 
 nav a:hover,
 nav a:focus {
-    background-color: #2563eb;
-    text-decoration: underline;
+    background: #2f6198;
 }
 
-/* ---------- Skip Link ---------- */
-
-body > a:first-child {
-    position: absolute;
-    left: -9999px;
-    top: 10px;
-    z-index: 1000;
+button,
+.button {
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #2463a6;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
 }
 
-body > a:first-child:focus {
-    left: 10px;
-    background-color: white;
-    color: #1e3a8a;
-    padding: 10px;
-    border: 2px solid #1e3a8a;
+button:hover,
+.button:hover {
+    opacity: 0.85;
 }
-
-/* ---------- Main ---------- */
 
 main {
     width: 90%;
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 30px auto;
 }
 
-/* ---------- Breadcrumb ---------- */
-
-main > nav[aria-label="Breadcrumb"] {
-    background-color: white;
-    padding: 12px 16px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-}
-
-main > nav[aria-label="Breadcrumb"] a {
-    color: #1d4ed8;
-    text-decoration: none;
-}
-
-main > nav[aria-label="Breadcrumb"] a:hover {
-    text-decoration: underline;
-}
-
-/* ---------- Sections ---------- */
-
 section {
-    background-color: white;
+    background: white;
     padding: 25px;
     margin-bottom: 25px;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
-section h2 {
-    margin-top: 0;
-    color: #1e3a8a;
+.hero {
+    text-align: center;
+    padding: 50px 25px;
 }
 
-/* ---------- Article Grid ---------- */
-
-section:has(article) {
-    display: block;
+.hero h2 {
+    font-size: 2.2rem;
 }
 
-article {
-    background-color: #f8fafc;
+.secondary {
+    background: #555;
+}
+
+.highlight {
+    text-align: center;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.card {
     padding: 20px;
-    margin: 15px 0;
+    border: 1px solid #ddd;
     border-radius: 8px;
-    border-left: 4px solid #2563eb;
+    background: #fafafa;
 }
 
-article h3 {
-    margin-top: 0;
-    color: #1e40af;
+.card a {
+    color: #2463a6;
+    font-weight: bold;
 }
 
-/* ---------- Dashboard Grid ---------- */
-
-section ul {
-    padding-left: 20px;
+.form-card {
+    max-width: 750px;
+    margin: auto;
 }
 
-section ul li {
-    margin-bottom: 10px;
-}
-
-section ul li a {
-    color: #1d4ed8;
-}
-
-/* ---------- Forms ---------- */
-
-form {
-    max-width: 700px;
-}
-
-form p {
-    margin-bottom: 18px;
+.form-group {
+    margin-bottom: 20px;
 }
 
 label {
+    display: block;
     font-weight: bold;
+    margin-bottom: 7px;
 }
 
 input,
@@ -165,517 +133,197 @@ select,
 textarea {
     width: 100%;
     padding: 11px;
-    margin-top: 6px;
-    border: 1px solid #9ca3af;
+    border: 1px solid #aaa;
     border-radius: 5px;
-    font-size: 1rem;
+    font-size: 16px;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-    outline: 3px solid #93c5fd;
-    border-color: #2563eb;
-}
-
-input[type="checkbox"],
-input[type="radio"] {
-    width: auto;
-    margin-right: 6px;
+    outline: 3px solid #b9d8ff;
+    border-color: #2463a6;
 }
 
 fieldset {
-    border: 1px solid #9ca3af;
-    padding: 15px;
-    margin: 20px 0;
+    border: 1px solid #aaa;
     border-radius: 6px;
+    margin-bottom: 20px;
+    padding: 15px;
 }
 
-legend {
+fieldset label {
+    display: inline-block;
+    margin-right: 20px;
+    font-weight: normal;
+}
+
+fieldset input {
+    width: auto;
+}
+
+.checkbox-group input {
+    width: auto;
+}
+
+.error-message {
+    display: block;
+    color: #c62828;
+    font-size: 14px;
+    margin-top: 5px;
+    min-height: 20px;
+}
+
+input.invalid,
+select.invalid,
+textarea.invalid {
+    border: 2px solid #c62828;
+    background: #fff5f5;
+}
+
+input.valid,
+select.valid {
+    border: 2px solid #218838;
+}
+
+.form-summary {
+    background: #fff0f0;
+    border-left: 5px solid #c62828;
+    padding: 15px;
+    margin-bottom: 20px;
+    color: #8b0000;
+}
+
+.success-message {
+    background: #e8f7e8;
+    border-left: 5px solid #218838;
+    color: #176b28;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.password-strength {
+    margin-top: 6px;
+    font-size: 14px;
     font-weight: bold;
-    padding: 0 8px;
 }
 
-/* ---------- Buttons ---------- */
-
-button {
-    background-color: #2563eb;
-    color: white;
-    border: none;
-    padding: 11px 22px;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
+.submit-button {
+    background: #218838;
+    margin-right: 10px;
 }
 
-button:hover,
-button:focus {
-    background-color: #1e40af;
+.reset-button {
+    background: #666;
 }
-
-/* ---------- Tables ---------- */
 
 table {
     width: 100%;
     border-collapse: collapse;
-    background-color: white;
-}
-
-caption {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 12px;
-    text-align: left;
+    margin-top: 15px;
 }
 
 th,
 td {
-    border: 1px solid #d1d5db;
+    border: 1px solid #ccc;
     padding: 12px;
     text-align: left;
 }
 
 th {
-    background-color: #dbeafe;
-    color: #1e3a8a;
+    background: #173b67;
+    color: white;
 }
 
-/* ---------- Address ---------- */
+tr:nth-child(even) {
+    background: #f5f5f5;
+}
+
+details {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+
+summary {
+    cursor: pointer;
+    font-weight: bold;
+}
 
 address {
-    background-color: #eff6ff;
-    padding: 20px;
-    border-radius: 8px;
     font-style: normal;
 }
 
-/* ---------- Aside ---------- */
-
-aside {
-    background-color: #e0f2fe;
-    padding: 20px;
-    margin-bottom: 25px;
-    border-radius: 10px;
-    border-left: 5px solid #0284c7;
-}
-
-aside h2 {
-    margin-top: 0;
-}
-
-/* ---------- Footer ---------- */
-
 footer {
-    background-color: #1e3a8a;
+    background: #173b67;
     color: white;
     text-align: center;
-    padding: 25px;
+    padding: 20px;
     margin-top: 40px;
 }
-
-footer p {
-    margin: 0;
-}
-
-/* ---------- Images ---------- */
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* =================================
-   FLEXBOX EXAMPLE
-   ================================= */
-
-.flex-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.flex-item {
-    flex: 1 1 250px;
-    background-color: #eff6ff;
-    padding: 20px;
-    border-radius: 8px;
-}
-
-/* =================================
-   CSS GRID
-   ================================= */
-
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.grid-item {
-    background-color: #eff6ff;
-    padding: 20px;
-    border-radius: 8px;
-}
-
-/* =================================
-   DESKTOP
-   ================================= */
-
-@media (min-width: 1024px) {
-
-    header {
-        padding: 25px 5%;
-    }
-
-    header h1 {
-        font-size: 2.3rem;
-    }
-
-    main {
-        width: 85%;
-    }
-
-    .events-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-    }
-
-    .events-grid article {
-        margin: 0;
-    }
-}
-
-/* =================================
-   TABLET
-   ================================= */
-
-@media (min-width: 601px) and (max-width: 1023px) {
-
-    header {
-        padding: 20px;
-    }
-
-    main {
-        width: 92%;
-    }
-
-    .grid-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .events-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-
-    .events-grid article {
-        margin: 0;
-    }
-}
-
-/* =================================
-   MOBILE
-   ================================= */
-
-@media (max-width: 600px) {
-
-    body {
-        font-size: 15px;
-    }
-
-    header {
-        padding: 15px;
-    }
-
-    header h1 {
-        font-size: 1.6rem;
-    }
-
-    nav {
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    nav a {
-        display: block;
-        width: 100%;
-        padding: 10px;
-    }
-
-    main {
-        width: 94%;
-        margin: 20px auto;
-    }
-
-    section {
-        padding: 18px;
-    }
-
-    .grid-container {
-        grid-template-columns: 1fr;
-    }
-
-    .events-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-
-    .events-grid article {
-        margin: 0;
-    }
-
-    .flex-container {
-        flex-direction: column;
-    }
-
-    table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
-
-    input,
-    select,
-    textarea {
-        font-size: 16px;
-    }
-
-    footer {
-        padding: 20px 15px;
-    }
-}
-
-/* =========================================
-   PRACTICAL 4 - JAVASCRIPT UI
-   ========================================= */
-
-
-/* =========================================
-   HAMBURGER MENU
-   ========================================= */
 
 #menuButton {
     display: none;
 }
 
-@media (max-width: 600px) {
+body.dark-mode {
+    background: #121212;
+    color: #eeeeee;
+}
+
+body.dark-mode section,
+body.dark-mode .card {
+    background: #1e1e1e;
+    color: #eeeeee;
+}
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+    background: #292929;
+    color: white;
+    border-color: #777;
+}
+
+body.dark-mode table {
+    color: white;
+}
+
+body.dark-mode tr:nth-child(even) {
+    background: #292929;
+}
+
+@media (max-width: 800px) {
 
     #menuButton {
         display: block;
-        background-color: #2563eb;
-        color: white;
-        border: none;
-        padding: 10px 15px;
-        margin-bottom: 10px;
-        cursor: pointer;
-        border-radius: 5px;
     }
 
     #mainNav {
         display: none;
-        flex-direction: column;
+        width: 100%;
     }
 
     #mainNav.show {
         display: flex;
+        flex-direction: column;
     }
-}
 
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
 
-/* =========================================
-   THEME BUTTON
-   ========================================= */
+    header {
+        align-items: flex-start;
+    }
 
-#themeButton {
-    margin-top: 10px;
-}
+    header h1 {
+        width: 100%;
+    }
 
+    table {
+        font-size: 14px;
+    }
 
-/* =========================================
-   DARK THEME
-   ========================================= */
-
-body.dark-theme {
-    background-color: #111827;
-    color: #f9fafb;
-}
-
-body.dark-theme header {
-    background-color: #030712;
-}
-
-body.dark-theme section {
-    background-color: #1f2937;
-    color: #f9fafb;
-}
-
-body.dark-theme article {
-    background-color: #374151;
-    color: #f9fafb;
-}
-
-body.dark-theme aside {
-    background-color: #164e63;
-}
-
-body.dark-theme input,
-body.dark-theme select,
-body.dark-theme textarea {
-    background-color: #374151;
-    color: white;
-    border-color: #6b7280;
-}
-
-body.dark-theme th {
-    background-color: #374151;
-    color: white;
-}
-
-body.dark-theme td {
-    border-color: #6b7280;
-}
-
-
-/* =========================================
-   NOTIFICATION BANNER
-   ========================================= */
-
-#notification {
-    background-color: #dbeafe;
-    color: #1e3a8a;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-}
-
-#closeNotification {
-    background-color: transparent;
-    color: #1e3a8a;
-    border: 2px solid #1e3a8a;
-    padding: 5px 10px;
-}
-
-
-/* =========================================
-   MODAL
-   ========================================= */
-
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.65);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    padding: 20px;
-}
-
-.modal.active {
-    display: flex;
-}
-
-.modal-content {
-    background-color: white;
-    color: #1f2937;
-    padding: 30px;
-    width: 90%;
-    max-width: 550px;
-    border-radius: 10px;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-#closeModal {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    background-color: #dc2626;
-    padding: 7px 12px;
-}
-
-
-/* =========================================
-   FAQ
-   ========================================= */
-
-.faq-item {
-    margin-bottom: 15px;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.faq-question {
-    width: 100%;
-    text-align: left;
-    background-color: #eff6ff;
-    color: #1e3a8a;
-    border-radius: 0;
-    padding: 15px;
-    font-weight: bold;
-}
-
-.faq-question:hover {
-    background-color: #dbeafe;
-}
-
-.faq-answer {
-    padding: 15px;
-    background-color: white;
-}
-
-
-/* =========================================
-   SLIDER
-   ========================================= */
-
-.slider {
-    position: relative;
-    max-width: 900px;
-    margin: auto;
-    overflow: hidden;
-}
-
-.slide {
-    display: none;
-    padding: 40px;
-    text-align: center;
-    background-color: #eff6ff;
-    border-radius: 10px;
-}
-
-.slide.active-slide {
-    display: block;
-}
-
-.slider-controls {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 15px;
-}
-
-
-/* =========================================
-   TRANSITION EFFECTS
-   ========================================= */
-
-button,
-article,
-a {
-    transition: all 0.2s ease;
-}
-
-article:hover {
-    transform: translateY(-3px);
-}
-
-button:hover {
-    transform: translateY(-1px);
 }

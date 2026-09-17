@@ -1,95 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
     <title>StudentHub - Dashboard</title>
+
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-    <a href="#main-content">Skip to main content</a>
+<header>
 
-    <header>
-        <h1>StudentHub</h1>
+    <h1>StudentHub</h1>
 
-        <nav aria-label="Main navigation">
-            <a href="homepage.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="events.html">Events</a>
-            <a href="profile.html">Profile</a>
-            <a href="register.html">Register</a>
-            <a href="login.html">Login</a>
-            <a href="contact.html">Contact</a>
-            <a href="faq.html">FAQ</a>
-            <a href="feedback.html">Feedback</a>
-        </nav>
-    </header>
+    <button id="menuButton" type="button">
+        ☰ Menu
+    </button>
 
-    <main id="main-content">
+    <nav id="mainNav" aria-label="Main navigation">
 
-        <nav aria-label="Breadcrumb">
-            <a href="homepage.html">Home</a>
-            &gt;
-            <span aria-current="page">Dashboard</span>
-        </nav>
+        <a href="homepage.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="events.html">Events</a>
+        <a href="profile.html">Profile</a>
+        <a href="attendance.html">Attendance</a>
+        <a href="results.html">Results</a>
+        <a href="register.html">Register</a>
+        <a href="login.html">Login</a>
+        <a href="contact.html">Contact</a>
+        <a href="faq.html">FAQ</a>
+        <a href="feedback.html">Feedback</a>
 
-        <section>
-            <h2>Student Dashboard</h2>
+    </nav>
+
+    <button id="themeButton" type="button">
+        🌙 Dark Mode
+    </button>
+
+</header>
+
+
+<main>
+
+<section>
+
+    <h2>Student Dashboard</h2>
+
+    <p>
+        Welcome to your StudentHub dashboard.
+    </p>
+
+</section>
+
+
+<section>
+
+    <div class="grid-container">
+
+        <article class="card">
+
+            <h3>👤 Profile</h3>
 
             <p>
-                Welcome to your StudentHub dashboard.
+                View personal information.
             </p>
-        </section>
 
-        <section>
-            <h2>Student Services</h2>
+            <a href="profile.html">
+                Open Profile
+            </a>
 
-            <ul>
-                <li>
-                    <a href="profile.html">View Profile</a>
-                </li>
+        </article>
 
-                <li>
-                    <a href="attendance.html">View Attendance</a>
-                </li>
 
-                <li>
-                    <a href="results.html">View Results</a>
-                </li>
+        <article class="card">
 
-                <li>
-                    <a href="events.html">View Events</a>
-                </li>
-            </ul>
-        </section>
+            <h3>📊 Attendance</h3>
 
-        <section>
-            <h2>Announcements</h2>
+            <p>
+                Check attendance.
+            </p>
 
-            <article>
-                <h3>Semester Examination</h3>
-                <p>
-                    Students are advised to check the examination
-                    schedule regularly.
-                </p>
-            </article>
+            <a href="attendance.html">
+                Open Attendance
+            </a>
 
-            <article>
-                <h3>Upcoming University Event</h3>
-                <p>
-                    Check the Events page for upcoming activities.
-                </p>
-            </article>
-        </section>
+        </article>
 
-    </main>
 
-    <footer>
-        <p>&copy; 2026 StudentHub. All rights reserved.</p>
-    </footer>
+        <article class="card">
+
+            <h3>📝 Results</h3>
+
+            <p>
+                View examination results.
+            </p>
+
+            <a href="results.html">
+                Open Results
+            </a>
+
+        </article>
+
+
+        <article class="card">
+
+            <h3>🎉 Events</h3>
+
+            <p>
+                Explore upcoming events.
+            </p>
+
+            <a href="events.html">
+                Open Events
+            </a>
+
+        </article>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        &copy; 2026 StudentHub. All rights reserved.
+    </p>
+
+</footer>
+
+
 <script src="script.js"></script>
+
 </body>
 </html>

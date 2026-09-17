@@ -1,342 +1,854 @@
-/* =========================================
-   StudentHub - Practical 4
-   JavaScript DOM Manipulation
-   ========================================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    /* =====================================
-       1. HAMBURGER MENU
-       ===================================== */
-
-    const menuButton = document.getElementById("menuButton");
-    const mainNav = document.getElementById("mainNav");
-
-    if (menuButton && mainNav) {
-
-        menuButton.addEventListener("click", function () {
-
-            mainNav.classList.toggle("show");
-
-            const isOpen = mainNav.classList.contains("show");
-
-            menuButton.setAttribute("aria-expanded", isOpen);
-
-        });
-    }
+// ============================================
+// STUDENTHUB COMMON JAVASCRIPT
+// ============================================
 
 
-    /* =====================================
-       2. DARK / LIGHT THEME
-       ===================================== */
+// ---------- MENU ----------
 
-    const themeButton = document.getElementById("themeButton");
+const menuButton = document.getElementById("menuButton");
+const mainNav = document.getElementById("mainNav");
 
-    // Restore saved theme
-    const savedTheme = localStorage.getItem("studenthub-theme");
+if (menuButton && mainNav) {
 
-    if (savedTheme === "dark") {
-        document.body.classList.add("dark-theme");
+    menuButton.addEventListener("click", function () {
 
-        if (themeButton) {
-            themeButton.textContent = "☀️ Light Mode";
+        mainNav.classList.toggle("show");
+
+        const isOpen =
+            mainNav.classList.contains("show");
+
+        menuButton.setAttribute(
+            "aria-expanded",
+            isOpen
+        );
+
+    });
+
+}
+
+
+// ---------- DARK MODE ----------
+
+const themeButton =
+    document.getElementById("themeButton");
+
+if (themeButton) {
+
+    themeButton.addEventListener("click", function () {
+
+        document.body.classList.toggle("dark-mode");
+
+        if (
+            document.body.classList.contains("dark-mode")
+        ) {
+
+            themeButton.textContent =
+                "☀️ Light Mode";
+
+        } else {
+
+            themeButton.textContent =
+                "🌙 Dark Mode";
+
         }
+
+    });
+
+}
+
+
+// =================================================
+// PRACTICAL 5 REGISTRATION VALIDATION
+// =================================================
+
+const registrationForm =
+    document.getElementById("registrationForm");
+
+
+if (registrationForm) {
+
+
+    // ---------- REGEX ----------
+
+    const nameRegex =
+        /^[A-Za-z ]{2,50}$/;
+
+    const emailRegex =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    const mobileRegex =
+        /^[6-9][0-9]{9}$/;
+
+    /*
+       Password rules:
+       At least 8 characters
+       One uppercase letter
+       One lowercase letter
+       One number
+       One special character
+    */
+
+    const passwordRegex =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+
+
+    // ---------- ELEMENTS ----------
+
+    const name =
+        document.getElementById("name");
+
+    const email =
+        document.getElementById("email");
+
+    const mobile =
+        document.getElementById("mobile");
+
+    const password =
+        document.getElementById("password");
+
+    const confirmPassword =
+        document.getElementById("confirmPassword");
+
+    const course =
+        document.getElementById("course");
+
+    const year =
+        document.getElementById("year");
+
+    const terms =
+        document.getElementById("terms");
+
+
+    // ---------- ERROR FUNCTION ----------
+
+    function showError(
+        input,
+        errorId,
+        message
+    ) {
+
+        const error =
+            document.getElementById(errorId);
+
+        error.textContent = message;
+
+        input.classList.add("invalid");
+        input.classList.remove("valid");
+
+        input.setAttribute(
+            "aria-invalid",
+            "true"
+        );
+
     }
 
-    if (themeButton) {
 
-        themeButton.addEventListener("click", function () {
+    // ---------- SUCCESS FUNCTION ----------
 
-            document.body.classList.toggle("dark-theme");
+    function showSuccess(
+        input,
+        errorId
+    ) {
 
-            const darkMode =
-                document.body.classList.contains("dark-theme");
+        const error =
+            document.getElementById(errorId);
 
-            if (darkMode) {
+        error.textContent = "";
 
-                localStorage.setItem(
-                    "studenthub-theme",
-                    "dark"
+        input.classList.remove("invalid");
+        input.classList.add("valid");
+
+        input.setAttribute(
+            "aria-invalid",
+            "false"
+        );
+
+    }
+
+
+    // =================================================
+    // NAME VALIDATION
+    // =================================================
+
+    function validateName() {
+
+        const value =
+            name.value.trim();
+
+        if (value === "") {
+
+            showError(
+                name,
+                "nameError",
+                "Name is required."
+            );
+
+            return false;
+        }
+
+        if (!nameRegex.test(value)) {
+
+            showError(
+                name,
+                "nameError",
+                "Name should contain only letters and spaces."
+            );
+
+            return false;
+        }
+
+        showSuccess(
+            name,
+            "nameError"
+        );
+
+        return true;
+    }
+
+
+    // =================================================
+    // EMAIL VALIDATION
+    // =================================================
+
+    function validateEmail() {
+
+        const value =
+            email.value.trim();
+
+        if (value === "") {
+
+            showError(
+                email,
+                "emailError",
+                "Email is required."
+            );
+
+            return false;
+        }
+
+        if (!emailRegex.test(value)) {
+
+            showError(
+                email,
+                "emailError",
+                "Enter a valid email address."
+            );
+
+            return false;
+        }
+
+        showSuccess(
+            email,
+            "emailError"
+        );
+
+        return true;
+    }
+
+
+    // =================================================
+    // MOBILE VALIDATION
+    // =================================================
+
+    function validateMobile() {
+
+        const value =
+            mobile.value.trim();
+
+        if (value === "") {
+
+            showError(
+                mobile,
+                "mobileError",
+                "Mobile number is required."
+            );
+
+            return false;
+        }
+
+        if (!mobileRegex.test(value)) {
+
+            showError(
+                mobile,
+                "mobileError",
+                "Enter a valid 10-digit Indian mobile number."
+            );
+
+            return false;
+        }
+
+        showSuccess(
+            mobile,
+            "mobileError"
+        );
+
+        return true;
+    }
+
+
+    // =================================================
+    // PASSWORD VALIDATION
+    // =================================================
+
+    function validatePassword() {
+
+        const value =
+            password.value;
+
+        if (value === "") {
+
+            showError(
+                password,
+                "passwordError",
+                "Password is required."
+            );
+
+            return false;
+        }
+
+        if (!passwordRegex.test(value)) {
+
+            showError(
+                password,
+                "passwordError",
+                "Password must contain 8+ characters, uppercase, lowercase, number and special character."
+            );
+
+            return false;
+        }
+
+        showSuccess(
+            password,
+            "passwordError"
+        );
+
+        return true;
+    }
+
+
+    // =================================================
+    // PASSWORD STRENGTH METER
+    // =================================================
+
+    password.addEventListener(
+        "input",
+        function () {
+
+            const value =
+                password.value;
+
+            const strength =
+                document.getElementById(
+                    "passwordStrength"
                 );
 
-                themeButton.textContent = "☀️ Light Mode";
+            let score = 0;
+
+            if (value.length >= 8)
+                score++;
+
+            if (/[a-z]/.test(value))
+                score++;
+
+            if (/[A-Z]/.test(value))
+                score++;
+
+            if (/[0-9]/.test(value))
+                score++;
+
+            if (/[@$!%*?&]/.test(value))
+                score++;
+
+
+            if (value.length === 0) {
+
+                strength.textContent =
+                    "Password strength: —";
+
+            } else if (score <= 2) {
+
+                strength.textContent =
+                    "Password strength: Weak";
+
+            } else if (score === 3) {
+
+                strength.textContent =
+                    "Password strength: Medium";
+
+            } else if (score === 4) {
+
+                strength.textContent =
+                    "Password strength: Good";
 
             } else {
 
-                localStorage.setItem(
-                    "studenthub-theme",
-                    "light"
+                strength.textContent =
+                    "Password strength: Strong";
+
+            }
+
+            validatePassword();
+
+        }
+    );
+
+
+    // =================================================
+    // CONFIRM PASSWORD
+    // =================================================
+
+    function validateConfirmPassword() {
+
+        const value =
+            confirmPassword.value;
+
+        if (value === "") {
+
+            showError(
+                confirmPassword,
+                "confirmPasswordError",
+                "Please confirm your password."
+            );
+
+            return false;
+        }
+
+        if (
+            value !== password.value
+        ) {
+
+            showError(
+                confirmPassword,
+                "confirmPasswordError",
+                "Passwords do not match."
+            );
+
+            return false;
+        }
+
+        showSuccess(
+            confirmPassword,
+            "confirmPasswordError"
+        );
+
+        return true;
+    }
+
+
+    // =================================================
+    // COURSE
+    // =================================================
+
+    function validateCourse() {
+
+        if (course.value === "") {
+
+            showError(
+                course,
+                "courseError",
+                "Please select your course."
+            );
+
+            return false;
+        }
+
+        showSuccess(
+            course,
+            "courseError"
+        );
+
+        return true;
+    }
+
+
+    // =================================================
+    // YEAR
+    // =================================================
+
+    function validateYear() {
+
+        if (year.value === "") {
+
+            showError(
+                year,
+                "yearError",
+                "Please select your year."
+            );
+
+            return false;
+        }
+
+        showSuccess(
+            year,
+            "yearError"
+        );
+
+        return true;
+    }
+
+
+    // =================================================
+    // GENDER
+    // =================================================
+
+    function validateGender() {
+
+        const gender =
+            document.querySelector(
+                'input[name="gender"]:checked'
+            );
+
+        const error =
+            document.getElementById(
+                "genderError"
+            );
+
+        if (!gender) {
+
+            error.textContent =
+                "Please select your gender.";
+
+            return false;
+        }
+
+        error.textContent = "";
+
+        return true;
+    }
+
+
+    // =================================================
+    // TERMS
+    // =================================================
+
+    function validateTerms() {
+
+        if (!terms.checked) {
+
+            const error =
+                document.getElementById(
+                    "termsError"
                 );
 
-                themeButton.textContent = "🌙 Dark Mode";
-            }
+            error.textContent =
+                "You must accept the Terms and Conditions.";
 
-        });
-    }
-
-
-    /* =====================================
-       3. NOTIFICATION BANNER
-       ===================================== */
-
-    const notification = document.getElementById("notification");
-    const closeNotification =
-        document.getElementById("closeNotification");
-
-    if (notification && closeNotification) {
-
-        closeNotification.addEventListener("click", function () {
-
-            notification.style.display = "none";
-
-        });
-    }
-
-
-    /* =====================================
-       4. MODAL POPUP
-       ===================================== */
-
-    const modal = document.getElementById("eventModal");
-    const openModal = document.getElementById("openModal");
-    const closeModal = document.getElementById("closeModal");
-
-    if (modal && openModal) {
-
-        openModal.addEventListener("click", function () {
-
-            modal.classList.add("active");
-
-            document.body.style.overflow = "hidden";
-
-            if (closeModal) {
-                closeModal.focus();
-            }
-
-        });
-    }
-
-    if (modal && closeModal) {
-
-        closeModal.addEventListener("click", function () {
-
-            modal.classList.remove("active");
-
-            document.body.style.overflow = "";
-
-            if (openModal) {
-                openModal.focus();
-            }
-
-        });
-    }
-
-    // Close modal by clicking outside
-    if (modal) {
-
-        modal.addEventListener("click", function (event) {
-
-            if (event.target === modal) {
-
-                modal.classList.remove("active");
-
-                document.body.style.overflow = "";
-
-            }
-
-        });
-    }
-
-    // Close modal using Escape
-    document.addEventListener("keydown", function (event) {
-
-        if (event.key === "Escape" && modal) {
-
-            modal.classList.remove("active");
-
-            document.body.style.overflow = "";
-
+            return false;
         }
 
-    });
+        document.getElementById(
+            "termsError"
+        ).textContent = "";
+
+        return true;
+    }
 
 
-    /* =====================================
-       5. FAQ COLLAPSIBLE
-       ===================================== */
+    // =================================================
+    // REAL-TIME VALIDATION
+    // =================================================
 
-    const faqButtons =
-        document.querySelectorAll(".faq-question");
+    name.addEventListener(
+        "blur",
+        validateName
+    );
 
-    faqButtons.forEach(function (button) {
+    email.addEventListener(
+        "blur",
+        validateEmail
+    );
 
-        button.addEventListener("click", function () {
+    mobile.addEventListener(
+        "blur",
+        validateMobile
+    );
 
-            const answer =
-                button.nextElementSibling;
+    password.addEventListener(
+        "blur",
+        validatePassword
+    );
 
-            const isOpen =
-                button.getAttribute("aria-expanded") === "true";
+    confirmPassword.addEventListener(
+        "blur",
+        validateConfirmPassword
+    );
 
-            // Close all other answers
-            faqButtons.forEach(function (otherButton) {
+    course.addEventListener(
+        "change",
+        validateCourse
+    );
 
-                if (otherButton !== button) {
+    year.addEventListener(
+        "change",
+        validateYear
+    );
 
-                    otherButton.setAttribute(
-                        "aria-expanded",
-                        "false"
+    terms.addEventListener(
+        "change",
+        validateTerms
+    );
+
+
+    // =================================================
+    // FORM SUBMISSION
+    // =================================================
+
+    registrationForm.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+
+            const validName =
+                validateName();
+
+            const validEmail =
+                validateEmail();
+
+            const validMobile =
+                validateMobile();
+
+            const validPassword =
+                validatePassword();
+
+            const validConfirm =
+                validateConfirmPassword();
+
+            const validCourse =
+                validateCourse();
+
+            const validYear =
+                validateYear();
+
+            const validGender =
+                validateGender();
+
+            const validTerms =
+                validateTerms();
+
+
+            const allValid =
+                validName &&
+                validEmail &&
+                validMobile &&
+                validPassword &&
+                validConfirm &&
+                validCourse &&
+                validYear &&
+                validGender &&
+                validTerms;
+
+
+            const summary =
+                document.getElementById(
+                    "formSummary"
+                );
+
+
+            if (!allValid) {
+
+                summary.hidden = false;
+
+                summary.textContent =
+                    "❌ Please correct the errors in the form before submitting.";
+
+                return;
+            }
+
+
+            // SUCCESS
+
+            summary.hidden = true;
+
+            const success =
+                document.getElementById(
+                    "successMessage"
+                );
+
+            success.hidden = false;
+
+            success.textContent =
+                "✅ Registration successful! Welcome to StudentHub.";
+
+            registrationForm.reset();
+
+
+            // Remove validation classes
+
+            const inputs =
+                registrationForm.querySelectorAll(
+                    "input, select"
+                );
+
+            inputs.forEach(
+                function (input) {
+
+                    input.classList.remove(
+                        "valid",
+                        "invalid"
                     );
 
-                    const otherAnswer =
-                        otherButton.nextElementSibling;
+                    input.removeAttribute(
+                        "aria-invalid"
+                    );
 
-                    if (otherAnswer) {
-                        otherAnswer.hidden = true;
-                    }
                 }
-
-            });
-
-            // Toggle selected answer
-            button.setAttribute(
-                "aria-expanded",
-                !isOpen
             );
 
-            if (answer) {
-                answer.hidden = isOpen;
-            }
 
-        });
+            document.getElementById(
+                "passwordStrength"
+            ).textContent =
+                "Password strength: —";
 
-    });
-
-
-    /* =====================================
-       6. CONTENT SLIDER
-       ===================================== */
-
-    const slides =
-        document.querySelectorAll(".slide");
-
-    const previousButton =
-        document.getElementById("previousSlide");
-
-    const nextButton =
-        document.getElementById("nextSlide");
-
-    let currentSlide = 0;
-
-
-    function showSlide(index) {
-
-        if (slides.length === 0) {
-            return;
         }
-
-        slides.forEach(function (slide) {
-
-            slide.classList.remove("active-slide");
-
-        });
-
-        slides[index].classList.add("active-slide");
-
-    }
+    );
 
 
-    if (nextButton) {
+    // =================================================
+    // RESET FORM
+    // =================================================
 
-        nextButton.addEventListener("click", function () {
+    registrationForm.addEventListener(
+        "reset",
+        function () {
 
-            currentSlide++;
+            setTimeout(
+                function () {
 
-            if (currentSlide >= slides.length) {
-                currentSlide = 0;
-            }
+                    const errors =
+                        registrationForm.querySelectorAll(
+                            ".error-message"
+                        );
 
-            showSlide(currentSlide);
-
-        });
-
-    }
-
-
-    if (previousButton) {
-
-        previousButton.addEventListener("click", function () {
-
-            currentSlide--;
-
-            if (currentSlide < 0) {
-                currentSlide = slides.length - 1;
-            }
-
-            showSlide(currentSlide);
-
-        });
-
-    }
+                    errors.forEach(
+                        function (error) {
+                            error.textContent = "";
+                        }
+                    );
 
 
-    // Automatically change slide
-    if (slides.length > 1) {
+                    const inputs =
+                        registrationForm.querySelectorAll(
+                            "input, select"
+                        );
 
-        setInterval(function () {
+                    inputs.forEach(
+                        function (input) {
 
-            currentSlide++;
+                            input.classList.remove(
+                                "valid",
+                                "invalid"
+                            );
 
-            if (currentSlide >= slides.length) {
-                currentSlide = 0;
-            }
+                            input.removeAttribute(
+                                "aria-invalid"
+                            );
 
-            showSlide(currentSlide);
-
-        }, 5000);
-
-    }
+                        }
+                    );
 
 
-    /* =====================================
-       7. BUTTON CLICK DEMO
-       ===================================== */
+                    document.getElementById(
+                        "formSummary"
+                    ).hidden = true;
 
-    const welcomeButton =
-        document.getElementById("welcomeButton");
 
-    if (welcomeButton) {
+                    document.getElementById(
+                        "successMessage"
+                    ).hidden = true;
 
-        welcomeButton.addEventListener("click", function () {
 
-            alert(
-                "Welcome to StudentHub! 🎓"
+                    document.getElementById(
+                        "passwordStrength"
+                    ).textContent =
+                        "Password strength: —";
+
+                },
+                0
             );
 
-        });
+        }
+    );
 
-    }
+}
 
 
-    /* =====================================
-       8. FORM SUBMISSION DEMO
-       ===================================== */
+// =================================================
+// CONTACT FORM
+// =================================================
 
-    const demoForm =
-        document.getElementById("demoForm");
+const contactForm =
+    document.getElementById("contactForm");
 
-    if (demoForm) {
+if (contactForm) {
 
-        demoForm.addEventListener("submit", function (event) {
+    contactForm.addEventListener(
+        "submit",
+        function (event) {
 
             event.preventDefault();
 
             alert(
-                "Form submitted successfully!"
+                "Your message has been submitted successfully."
             );
 
-        });
+            contactForm.reset();
 
-    }
+        }
+    );
 
-});
+}
+
+
+// =================================================
+// FEEDBACK FORM
+// =================================================
+
+const feedbackForm =
+    document.getElementById("feedbackForm");
+
+if (feedbackForm) {
+
+    feedbackForm.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+            alert(
+                "Thank you for your valuable feedback!"
+            );
+
+            feedbackForm.reset();
+
+        }
+    );
+
+}
+
+
+// =================================================
+// LOGIN FORM
+// =================================================
+
+const loginForm =
+    document.getElementById("loginForm");
+
+if (loginForm) {
+
+    loginForm.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+            alert(
+                "Login successful! Welcome to StudentHub."
+            );
+
+        }
+    );
+
+}

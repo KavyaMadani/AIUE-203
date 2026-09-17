@@ -1,80 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
     <title>StudentHub - Events</title>
+
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-    <a href="#main-content">Skip to main content</a>
+<header>
 
-    <header>
-        <h1>StudentHub</h1>
+    <h1>StudentHub</h1>
 
-        <nav aria-label="Main navigation">
-            <a href="homepage.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="events.html">Events</a>
-            <a href="profile.html">Profile</a>
-            <a href="register.html">Register</a>
-            <a href="login.html">Login</a>
-            <a href="contact.html">Contact</a>
-            <a href="faq.html">FAQ</a>
-            <a href="feedback.html">Feedback</a>
-        </nav>
-    </header>
+    <button id="menuButton" type="button">
+        ☰ Menu
+    </button>
 
-    <main id="main-content">
+    <nav id="mainNav" aria-label="Main navigation">
 
-        <nav aria-label="Breadcrumb">
-            <a href="homepage.html">Home</a>
-            &gt;
-            <span aria-current="page">Events</span>
-        </nav>
+        <a href="homepage.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="events.html">Events</a>
+        <a href="profile.html">Profile</a>
+        <a href="attendance.html">Attendance</a>
+        <a href="results.html">Results</a>
+        <a href="register.html">Register</a>
+        <a href="login.html">Login</a>
+        <a href="contact.html">Contact</a>
+        <a href="faq.html">FAQ</a>
+        <a href="feedback.html">Feedback</a>
 
-        <section>
-            <h2>Upcoming Events</h2>
+    </nav>
 
-            <article>
-                <h3>AI and Machine Learning Workshop</h3>
-                <p><strong>Date:</strong> 20 August 2026</p>
-                <p><strong>Venue:</strong> Seminar Hall</p>
-                <p>
-                    Learn about the latest concepts in Artificial
-                    Intelligence and Machine Learning.
-                </p>
-            </article>
+    <button id="themeButton" type="button">
+        🌙 Dark Mode
+    </button>
 
-            <article>
-                <h3>University Hackathon</h3>
-                <p><strong>Date:</strong> 25 August 2026</p>
-                <p><strong>Venue:</strong> Innovation Lab</p>
-                <p>
-                    Participate in a problem-solving and coding
-                    competition with other students.
-                </p>
-            </article>
+</header>
 
-            <article>
-                <h3>Student Innovation Day</h3>
-                <p><strong>Date:</strong> 5 September 2026</p>
-                <p><strong>Venue:</strong> Main Auditorium</p>
-                <p>
-                    Students can present innovative projects and ideas.
-                </p>
-            </article>
 
-        </section>
+<main>
 
-    </main>
+<section>
 
-    <footer>
-        <p>&copy; 2026 StudentHub. All rights reserved.</p>
-    </footer>
+    <h2>Upcoming Events</h2>
+
+    <div class="grid-container">
+
+        <article class="card">
+
+            <h3>💻 Coding Hackathon</h3>
+
+            <p>
+                Date: 20 September 2026
+            </p>
+
+            <p>
+                Participate in a coding competition
+                and showcase your programming skills.
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <h3>🤖 AI Workshop</h3>
+
+            <p>
+                Date: 25 September 2026
+            </p>
+
+            <p>
+                Learn about Artificial Intelligence
+                and Machine Learning.
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <h3>🎨 Cultural Event</h3>
+
+            <p>
+                Date: 30 September 2026
+            </p>
+
+            <p>
+                Enjoy cultural activities and performances.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        &copy; 2026 StudentHub. All rights reserved.
+    </p>
+
+</footer>
+
+
 <script src="script.js"></script>
+
 </body>
 </html>

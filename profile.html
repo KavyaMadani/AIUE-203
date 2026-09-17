@@ -1,91 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
     <title>StudentHub - Profile</title>
+
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-    <a href="#main-content">Skip to main content</a>
+<header>
 
-    <header>
-        <h1>StudentHub</h1>
+    <h1>StudentHub</h1>
 
-        <nav aria-label="Main navigation">
-            <a href="homepage.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="events.html">Events</a>
-            <a href="profile.html">Profile</a>
-            <a href="register.html">Register</a>
-            <a href="login.html">Login</a>
-            <a href="contact.html">Contact</a>
-            <a href="faq.html">FAQ</a>
-            <a href="feedback.html">Feedback</a>
-        </nav>
-    </header>
+    <button id="menuButton" type="button">
+        ☰ Menu
+    </button>
 
-    <main id="main-content">
+    <nav id="mainNav" aria-label="Main navigation">
 
-        <nav aria-label="Breadcrumb">
-            <a href="homepage.html">Home</a>
-            &gt;
-            <a href="dashboard.html">Dashboard</a>
-            &gt;
-            <span aria-current="page">Profile</span>
-        </nav>
+        <a href="homepage.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="events.html">Events</a>
+        <a href="profile.html">Profile</a>
+        <a href="attendance.html">Attendance</a>
+        <a href="results.html">Results</a>
+        <a href="register.html">Register</a>
+        <a href="login.html">Login</a>
+        <a href="contact.html">Contact</a>
+        <a href="faq.html">FAQ</a>
+        <a href="feedback.html">Feedback</a>
 
-        <section>
-            <h2>Student Profile</h2>
+    </nav>
 
-            <article>
-                <h3>Personal Information</h3>
+    <button id="themeButton" type="button">
+        🌙 Dark Mode
+    </button>
 
-                <p>
-                    <strong>Name:</strong> Student Name
-                </p>
+</header>
 
-                <p>
-                    <strong>Enrollment Number:</strong> 24AIML101
-                </p>
 
-                <p>
-                    <strong>Email:</strong> student@example.com
-                </p>
+<main>
 
-                <p>
-                    <strong>Phone:</strong> 9876543210
-                </p>
-            </article>
-        </section>
+<section>
 
-        <section>
-            <h2>Academic Information</h2>
+    <h2>Student Profile</h2>
 
-            <article>
-                <p>
-                    <strong>Course:</strong> B.Tech Artificial Intelligence
-                    and Machine Learning
-                </p>
+    <table>
 
-                <p>
-                    <strong>Year:</strong> Second Year
-                </p>
+        <tr>
+            <th>Name</th>
+            <td>Kavya Madani</td>
+        </tr>
 
-                <p>
-                    <strong>Semester:</strong> 3
-                </p>
-            </article>
-        </section>
+        <tr>
+            <th>Course</th>
+            <td>B.Tech AI & ML</td>
+        </tr>
 
-    </main>
+        <tr>
+            <th>Year</th>
+            <td>Second Year</td>
+        </tr>
 
-    <footer>
-        <p>&copy; 2026 StudentHub. All rights reserved.</p>
-    </footer>
+        <tr>
+            <th>University</th>
+            <td>CHARUSAT</td>
+        </tr>
+
+        <tr>
+            <th>Student Status</th>
+            <td>Active</td>
+        </tr>
+
+    </table>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        &copy; 2026 StudentHub. All rights reserved.
+    </p>
+
+</footer>
+
+
 <script src="script.js"></script>
+
 </body>
 </html>

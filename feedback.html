@@ -9,7 +9,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-    <title>StudentHub - Contact</title>
+    <title>StudentHub - Feedback</title>
 
     <link rel="stylesheet" href="style.css">
 
@@ -51,51 +51,21 @@
 
 <main>
 
-<section>
-
-    <h2>Contact StudentHub</h2>
-
-    <p>
-        Contact us if you have any questions
-        regarding StudentHub.
-    </p>
-
-    <address>
-
-        <p>
-            📧 Email:
-            support@studenthub.example
-        </p>
-
-        <p>
-            📞 Phone:
-            +91 98765 43210
-        </p>
-
-        <p>
-            University Student Support Centre
-        </p>
-
-    </address>
-
-</section>
-
-
 <section class="form-card">
 
-    <h2>Send Message</h2>
+    <h2>Student Feedback</h2>
 
-    <form id="contactForm">
+    <form id="feedbackForm">
 
         <div class="form-group">
 
-            <label for="contactName">
+            <label for="feedbackName">
                 Name
             </label>
 
             <input
                 type="text"
-                id="contactName"
+                id="feedbackName"
                 required>
 
         </div>
@@ -103,40 +73,49 @@
 
         <div class="form-group">
 
-            <label for="contactEmail">
-                Email
+            <label for="rating">
+                Rating
             </label>
 
-            <input
-                type="email"
-                id="contactEmail"
-                required>
+            <select id="rating" required>
+
+                <option value="">
+                    Select Rating
+                </option>
+
+                <option value="5">
+                    ⭐⭐⭐⭐⭐ Excellent
+                </option>
+
+                <option value="4">
+                    ⭐⭐⭐⭐ Good
+                </option>
+
+                <option value="3">
+                    ⭐⭐⭐ Average
+                </option>
+
+                <option value="2">
+                    ⭐⭐ Poor
+                </option>
+
+                <option value="1">
+                    ⭐ Very Poor
+                </option>
+
+            </select>
 
         </div>
 
 
         <div class="form-group">
 
-            <label for="subject">
-                Subject
-            </label>
-
-            <input
-                type="text"
-                id="subject"
-                required>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label for="message">
-                Message
+            <label for="feedbackText">
+                Feedback
             </label>
 
             <textarea
-                id="message"
+                id="feedbackText"
                 rows="6"
                 required>
             </textarea>
@@ -148,7 +127,7 @@
             type="submit"
             class="submit-button">
 
-            Send Message
+            Submit Feedback
 
         </button>
 

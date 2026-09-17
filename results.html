@@ -1,87 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
     <title>StudentHub - Results</title>
+
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-    <a href="#main-content">Skip to main content</a>
+<header>
 
-    <header>
-        <h1>StudentHub</h1>
+    <h1>StudentHub</h1>
 
-        <nav aria-label="Main navigation">
-            <a href="homepage.html">Home</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="profile.html">Profile</a>
-            <a href="attendance.html">Attendance</a>
-            <a href="results.html">Results</a>
-            <a href="events.html">Events</a>
-        </nav>
-    </header>
+    <button id="menuButton" type="button">
+        ☰ Menu
+    </button>
 
-    <main id="main-content">
+    <nav id="mainNav" aria-label="Main navigation">
 
-        <nav aria-label="Breadcrumb">
-            <a href="homepage.html">Home</a>
-            &gt;
-            <a href="dashboard.html">Dashboard</a>
-            &gt;
-            <span aria-current="page">Results</span>
-        </nav>
+        <a href="homepage.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="events.html">Events</a>
+        <a href="profile.html">Profile</a>
+        <a href="attendance.html">Attendance</a>
+        <a href="results.html">Results</a>
+        <a href="register.html">Register</a>
+        <a href="login.html">Login</a>
+        <a href="contact.html">Contact</a>
+        <a href="faq.html">FAQ</a>
+        <a href="feedback.html">Feedback</a>
 
-        <section>
-            <h2>Academic Results</h2>
+    </nav>
 
-            <table>
-                <caption>Semester Examination Results</caption>
+    <button id="themeButton" type="button">
+        🌙 Dark Mode
+    </button>
 
-                <thead>
-                    <tr>
-                        <th scope="col">Subject</th>
-                        <th scope="col">Marks</th>
-                        <th scope="col">Grade</th>
-                    </tr>
-                </thead>
+</header>
 
-                <tbody>
-                    <tr>
-                        <td>Data Structures</td>
-                        <td>85</td>
-                        <td>A</td>
-                    </tr>
 
-                    <tr>
-                        <td>Java Programming</td>
-                        <td>82</td>
-                        <td>A</td>
-                    </tr>
+<main>
 
-                    <tr>
-                        <td>Digital Communication</td>
-                        <td>78</td>
-                        <td>B+</td>
-                    </tr>
+<section>
 
-                    <tr>
-                        <td>Web Development</td>
-                        <td>90</td>
-                        <td>A+</td>
-                    </tr>
-                </tbody>
-            </table>
+    <h2>Academic Results</h2>
 
-        </section>
+    <table>
 
-    </main>
+        <caption>
+            Semester Examination Results
+        </caption>
 
-    <footer>
-        <p>&copy; 2026 StudentHub. All rights reserved.</p>
-    </footer>
+        <thead>
+
+            <tr>
+
+                <th>Subject</th>
+                <th>Marks</th>
+                <th>Grade</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>Data Structures</td>
+                <td>85</td>
+                <td>A</td>
+            </tr>
+
+            <tr>
+                <td>Java Programming</td>
+                <td>82</td>
+                <td>A</td>
+            </tr>
+
+            <tr>
+                <td>Digital Electronics</td>
+                <td>78</td>
+                <td>B+</td>
+            </tr>
+
+            <tr>
+                <td>Web Development</td>
+                <td>90</td>
+                <td>A+</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        &copy; 2026 StudentHub. All rights reserved.
+    </p>
+
+</footer>
+
+
 <script src="script.js"></script>
+
 </body>
 </html>

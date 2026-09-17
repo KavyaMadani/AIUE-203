@@ -1,92 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
     <title>StudentHub - Attendance</title>
+
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-    <a href="#main-content">Skip to main content</a>
+<header>
 
-    <header>
-        <h1>StudentHub</h1>
+    <h1>StudentHub</h1>
 
-        <nav aria-label="Main navigation">
-            <a href="homepage.html">Home</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="profile.html">Profile</a>
-            <a href="attendance.html">Attendance</a>
-            <a href="results.html">Results</a>
-            <a href="events.html">Events</a>
-        </nav>
-    </header>
+    <button id="menuButton" type="button">
+        ☰ Menu
+    </button>
 
-    <main id="main-content">
+    <nav id="mainNav" aria-label="Main navigation">
 
-        <nav aria-label="Breadcrumb">
-            <a href="homepage.html">Home</a>
-            &gt;
-            <a href="dashboard.html">Dashboard</a>
-            &gt;
-            <span aria-current="page">Attendance</span>
-        </nav>
+        <a href="homepage.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="events.html">Events</a>
+        <a href="profile.html">Profile</a>
+        <a href="attendance.html">Attendance</a>
+        <a href="results.html">Results</a>
+        <a href="register.html">Register</a>
+        <a href="login.html">Login</a>
+        <a href="contact.html">Contact</a>
+        <a href="faq.html">FAQ</a>
+        <a href="feedback.html">Feedback</a>
 
-        <section>
-            <h2>Attendance</h2>
+    </nav>
 
-            <table>
-                <caption>Student Attendance Record</caption>
+    <button id="themeButton" type="button">
+        🌙 Dark Mode
+    </button>
 
-                <thead>
-                    <tr>
-                        <th scope="col">Subject</th>
-                        <th scope="col">Total Classes</th>
-                        <th scope="col">Classes Attended</th>
-                        <th scope="col">Attendance</th>
-                    </tr>
-                </thead>
+</header>
 
-                <tbody>
-                    <tr>
-                        <td>Data Structures</td>
-                        <td>40</td>
-                        <td>36</td>
-                        <td>90%</td>
-                    </tr>
 
-                    <tr>
-                        <td>Java Programming</td>
-                        <td>40</td>
-                        <td>34</td>
-                        <td>85%</td>
-                    </tr>
+<main>
 
-                    <tr>
-                        <td>Digital Communication</td>
-                        <td>40</td>
-                        <td>32</td>
-                        <td>80%</td>
-                    </tr>
+<section>
 
-                    <tr>
-                        <td>Web Development</td>
-                        <td>40</td>
-                        <td>38</td>
-                        <td>95%</td>
-                    </tr>
-                </tbody>
-            </table>
+    <h2>Attendance</h2>
 
-        </section>
+    <table>
 
-    </main>
+        <caption>
+            Subject-wise Attendance
+        </caption>
 
-    <footer>
-        <p>&copy; 2026 StudentHub. All rights reserved.</p>
-    </footer>
+        <thead>
+
+            <tr>
+
+                <th>Subject</th>
+                <th>Total Classes</th>
+                <th>Present</th>
+                <th>Attendance</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>Data Structures</td>
+                <td>40</td>
+                <td>36</td>
+                <td>90%</td>
+            </tr>
+
+            <tr>
+                <td>Java Programming</td>
+                <td>42</td>
+                <td>38</td>
+                <td>90%</td>
+            </tr>
+
+            <tr>
+                <td>Web Technology</td>
+                <td>40</td>
+                <td>37</td>
+                <td>92.5%</td>
+            </tr>
+
+            <tr>
+                <td>Digital Electronics</td>
+                <td>38</td>
+                <td>34</td>
+                <td>89.5%</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        &copy; 2026 StudentHub. All rights reserved.
+    </p>
+
+</footer>
+
+
 <script src="script.js"></script>
+
 </body>
 </html>
