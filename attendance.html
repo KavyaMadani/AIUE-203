@@ -2,17 +2,10 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudentHub - Attendance</title>
-
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
@@ -21,11 +14,11 @@
 
     <h1>StudentHub</h1>
 
-    <button id="menuButton" type="button">
+    <button id="menuButton" aria-expanded="false">
         ☰ Menu
     </button>
 
-    <nav id="mainNav" aria-label="Main navigation">
+    <nav id="mainNav">
 
         <a href="homepage.html">Home</a>
         <a href="about.html">About</a>
@@ -34,7 +27,7 @@
         <a href="profile.html">Profile</a>
         <a href="attendance.html">Attendance</a>
         <a href="results.html">Results</a>
-        <a href="register.html">Register</a>
+        <a href="registration.html">Register</a>
         <a href="login.html">Login</a>
         <a href="contact.html">Contact</a>
         <a href="faq.html">FAQ</a>
@@ -42,85 +35,76 @@
 
     </nav>
 
-    <button id="themeButton" type="button">
-        🌙 Dark Mode
-    </button>
+    <button id="themeButton">🌙 Dark Mode</button>
 
 </header>
 
 
 <main>
 
-<section>
+    <section>
 
-    <h2>Attendance</h2>
+        <h2>Attendance</h2>
 
-    <table>
+        <div class="table-wrapper">
 
-        <caption>
-            Subject-wise Attendance
-        </caption>
+            <table>
 
-        <thead>
+                <thead>
 
-            <tr>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Total Classes</th>
+                        <th>Present</th>
+                        <th>Attendance</th>
+                    </tr>
 
-                <th>Subject</th>
-                <th>Total Classes</th>
-                <th>Present</th>
-                <th>Attendance</th>
+                </thead>
 
-            </tr>
+                <tbody>
 
-        </thead>
+                    <tr>
+                        <td>Data Structures</td>
+                        <td>40</td>
+                        <td>36</td>
+                        <td>90%</td>
+                    </tr>
 
-        <tbody>
+                    <tr>
+                        <td>Java Programming</td>
+                        <td>42</td>
+                        <td>38</td>
+                        <td>90.5%</td>
+                    </tr>
 
-            <tr>
-                <td>Data Structures</td>
-                <td>40</td>
-                <td>36</td>
-                <td>90%</td>
-            </tr>
+                    <tr>
+                        <td>Web Technology</td>
+                        <td>40</td>
+                        <td>37</td>
+                        <td>92.5%</td>
+                    </tr>
 
-            <tr>
-                <td>Java Programming</td>
-                <td>42</td>
-                <td>38</td>
-                <td>90%</td>
-            </tr>
+                    <tr>
+                        <td>Digital Electronics</td>
+                        <td>36</td>
+                        <td>34</td>
+                        <td>94.4%</td>
+                    </tr>
 
-            <tr>
-                <td>Web Technology</td>
-                <td>40</td>
-                <td>37</td>
-                <td>92.5%</td>
-            </tr>
+                </tbody>
 
-            <tr>
-                <td>Digital Electronics</td>
-                <td>38</td>
-                <td>34</td>
-                <td>89.5%</td>
-            </tr>
+            </table>
 
-        </tbody>
+        </div>
 
-    </table>
-
-</section>
+    </section>
 
 </main>
 
 
 <footer>
-
-    <p>
-        &copy; 2026 StudentHub. All rights reserved.
-    </p>
-
+    <p>© 2026 StudentHub. All rights reserved.</p>
 </footer>
-
 
 <script src="script.js"></script>
 

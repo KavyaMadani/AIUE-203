@@ -3,90 +3,90 @@
         "id": 1,
         "question": "What is StudentHub?",
         "category": "General",
-        "answer": "StudentHub is a student portal that provides academic information, events, attendance, results and student services."
+        "answer": "StudentHub is a student portal for academic information and student services."
     },
     {
         "id": 2,
         "question": "How can I register?",
         "category": "Account",
-        "answer": "Open the Registration page and enter your required student information."
+        "answer": "Open the Registration page and enter your required details."
     },
     {
         "id": 3,
         "question": "How can I login?",
         "category": "Account",
-        "answer": "Open the Login page and enter your registered email and password."
+        "answer": "Open the Login page and enter your enrollment number and password."
     },
     {
         "id": 4,
-        "question": "How can I view my attendance?",
+        "question": "Where can I check attendance?",
         "category": "Academic",
-        "answer": "Open the Attendance page from the StudentHub navigation menu."
+        "answer": "Open the Attendance page from the StudentHub navigation."
     },
     {
         "id": 5,
-        "question": "How can I view my results?",
+        "question": "Where can I check results?",
         "category": "Academic",
-        "answer": "Open the Results page to view your examination results."
+        "answer": "Open the Results page to view examination results."
     },
     {
         "id": 6,
         "question": "How can I update my profile?",
         "category": "Account",
-        "answer": "Open your Profile page and update the available information."
+        "answer": "Open the Profile page to view student information."
     },
     {
         "id": 7,
         "question": "How can I register for an event?",
         "category": "Events",
-        "answer": "Open the Events page and select the event you want to participate in."
+        "answer": "Open Events and select the event you want to participate in."
     },
     {
         "id": 8,
         "question": "Where can I see upcoming events?",
         "category": "Events",
-        "answer": "Upcoming university events are displayed on the Events page."
+        "answer": "Upcoming events are available on the Events page."
     },
     {
         "id": 9,
         "question": "How can I contact StudentHub?",
         "category": "Support",
-        "answer": "Visit the Contact page to find support information."
+        "answer": "Visit the Contact page for StudentHub support information."
     },
     {
         "id": 10,
         "question": "How can I submit feedback?",
         "category": "Support",
-        "answer": "Visit the Feedback page and submit your feedback through the form."
+        "answer": "Open the Feedback page and submit the feedback form."
     },
     {
         "id": 11,
         "question": "What courses are available?",
         "category": "Academic",
-        "answer": "StudentHub can display information about different university courses and departments."
+        "answer": "StudentHub can display information about different university courses."
     },
     {
         "id": 12,
         "question": "Can I search for students?",
         "category": "Students",
-        "answer": "Yes. The student directory provides search and filtering functionality."
+        "answer": "Yes, the Student Profile page provides student search and filtering."
     },
     {
         "id": 13,
         "question": "Can I filter events?",
         "category": "Events",
-        "answer": "Yes. Events can be filtered according to their category."
+        "answer": "Yes, events can be filtered according to category."
     },
     {
         "id": 14,
-        "question": "Does StudentHub support dark mode?",
+        "question": "Does StudentHub have dark mode?",
         "category": "General",
-        "answer": "Yes. The interface provides a light and dark theme option."
+        "answer": "Yes, the website includes a light and dark theme."
     },
     {
         "id": 15,
-        "question": "What should I do if there is an error?",
+        "question": "What should I do if an error occurs?",
         "category": "Support",
-        "answer": "Check your internet connection and contact StudentHub support if the problem continues."
+        "answer": "Check that the JSON files exist and run the project using Live Server."
     }
 ]

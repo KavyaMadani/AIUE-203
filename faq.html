@@ -2,19 +2,10 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudentHub - FAQ</title>
-
-    <link
-        rel="stylesheet"
-        href="style.css">
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -23,129 +14,86 @@
 
     <h1>StudentHub</h1>
 
-    <button
-        id="menuButton"
-        type="button"
-        aria-expanded="false">
-
+    <button id="menuButton" aria-expanded="false">
         ☰ Menu
-
     </button>
 
-    <nav
-        id="mainNav"
-        aria-label="Main navigation">
+    <nav id="mainNav">
 
         <a href="homepage.html">Home</a>
         <a href="about.html">About</a>
         <a href="dashboard.html">Dashboard</a>
         <a href="events.html">Events</a>
-        <a href="profile.html">Students</a>
+        <a href="profile.html">Profile</a>
         <a href="attendance.html">Attendance</a>
         <a href="results.html">Results</a>
+        <a href="registration.html">Register</a>
+        <a href="login.html">Login</a>
         <a href="contact.html">Contact</a>
         <a href="faq.html">FAQ</a>
         <a href="feedback.html">Feedback</a>
-        <a href="login.html">Login</a>
 
     </nav>
 
-    <button
-        id="themeButton"
-        type="button">
-
-        🌙 Dark Mode
-
-    </button>
+    <button id="themeButton">🌙 Dark Mode</button>
 
 </header>
 
 
 <main>
 
-    <nav aria-label="Breadcrumb">
-
-        <a href="homepage.html">
-            Home
-        </a>
-
-        <span> → FAQ</span>
-
-    </nav>
-
-
     <section>
 
         <h2>Frequently Asked Questions</h2>
 
         <p>
-            FAQs are loaded dynamically from
-            <strong>faqs.json</strong>.
+            FAQs are loaded from
+            <strong>faqs.json</strong>
+            using Fetch API.
         </p>
 
 
-        <label for="faqSearch">
-            Search FAQs
-        </label>
+        <div class="controls">
 
-        <input
-            type="search"
-            id="faqSearch"
-            placeholder="Search your question...">
+            <div class="control-group">
+
+                <label for="faqSearch">
+                    Search FAQ
+                </label>
+
+                <input
+                    id="faqSearch"
+                    type="search"
+                    placeholder="Search questions...">
+
+            </div>
 
 
-        <label for="faqCategory">
-            Filter by Category
-        </label>
+            <div class="control-group">
 
-        <select id="faqCategory">
+                <label for="faqCategory">
+                    Category
+                </label>
 
-            <option value="All">
-                All Categories
-            </option>
+                <select id="faqCategory">
+                    <option>Loading...</option>
+                </select>
 
-            <option value="General">
-                General
-            </option>
+            </div>
 
-            <option value="Account">
-                Account
-            </option>
-
-            <option value="Academic">
-                Academic
-            </option>
-
-            <option value="Events">
-                Events
-            </option>
-
-            <option value="Support">
-                Support
-            </option>
-
-            <option value="Students">
-                Students
-            </option>
-
-        </select>
+        </div>
 
     </section>
 
 
     <section>
 
-        <div
-            id="faqContainer"
-            class="faq-container">
-
+        <div id="faqContainer"
+             class="faq-container">
         </div>
 
-
-        <div
-            id="faqPagination"
-            class="pagination">
-
+        <div id="faqPagination"
+             class="pagination">
         </div>
 
     </section>
@@ -154,16 +102,10 @@
 
 
 <footer>
-
-    <p>
-        &copy; 2026 StudentHub
-    </p>
-
+    <p>© 2026 StudentHub. All rights reserved.</p>
 </footer>
-
 
 <script src="script.js"></script>
 
 </body>
-
 </html>

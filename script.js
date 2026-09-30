@@ -1,13 +1,8 @@
-/* ============================================
+/* ==========================================
    STUDENTHUB - PRACTICAL 6
    Fetch API + JSON + Search + Filter
-   Sort + Pagination + Error Handling
-   ============================================ */
-
-
-/* ============================================
-   GLOBAL VARIABLES
-   ============================================ */
+   Sort + Pagination
+   ========================================== */
 
 let eventsData = [];
 let studentsData = [];
@@ -17,16 +12,16 @@ let eventPage = 1;
 let studentPage = 1;
 let faqPage = 1;
 
-const recordsPerPage = 5;
+const recordsPerPage = 4;
 
 
-/* ============================================
-   COMMON INITIALIZATION
-   ============================================ */
+/* ==========================================
+   PAGE LOAD
+   ========================================== */
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
-    setupNavigation();
+    setupMenu();
     setupTheme();
 
     loadEvents();
@@ -36,128 +31,87 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-/* ============================================
-   NAVIGATION
-   ============================================ */
+/* ==========================================
+   HAMBURGER MENU
+   ========================================== */
 
-function setupNavigation() {
+function setupMenu() {
 
-    const menuButton =
-        document.getElementById("menuButton");
+    const button = document.getElementById("menuButton");
+    const nav = document.getElementById("mainNav");
 
-    const mainNav =
-        document.getElementById("mainNav");
+    if (!button || !nav) return;
 
-    if (menuButton && mainNav) {
+    button.addEventListener("click", () => {
 
-        menuButton.addEventListener(
-            "click",
-            function () {
+        nav.classList.toggle("show");
 
-                mainNav.classList.toggle("show");
+        const opened = nav.classList.contains("show");
 
-                const isOpen =
-                    mainNav.classList.contains("show");
-
-                menuButton.setAttribute(
-                    "aria-expanded",
-                    isOpen
-                );
-
-            }
+        button.setAttribute(
+            "aria-expanded",
+            opened
         );
 
-    }
+    });
 
 }
 
 
-/* ============================================
-   DARK / LIGHT THEME
-   ============================================ */
+/* ==========================================
+   DARK MODE
+   ========================================== */
 
 function setupTheme() {
 
-    const themeButton =
+    const button =
         document.getElementById("themeButton");
 
-    const savedTheme =
-        localStorage.getItem(
-            "studenthub-theme"
-        );
+    if (!button) return;
 
-    if (savedTheme === "dark") {
+    const saved =
+        localStorage.getItem("studenthub-theme");
 
-        document.body.classList.add(
-            "dark-theme"
-        );
+    if (saved === "dark") {
 
-        if (themeButton) {
+        document.body.classList.add("dark-theme");
 
-            themeButton.textContent =
-                "☀️ Light Mode";
-
-        }
+        button.textContent = "☀ Light Mode";
 
     }
 
-    if (themeButton) {
+    button.addEventListener("click", () => {
 
-        themeButton.addEventListener(
-            "click",
-            function () {
+        document.body.classList.toggle("dark-theme");
 
-                document.body.classList.toggle(
-                    "dark-theme"
-                );
+        const dark =
+            document.body.classList.contains(
+                "dark-theme"
+            );
 
-                const isDark =
-                    document.body.classList.contains(
-                        "dark-theme"
-                    );
-
-                if (isDark) {
-
-                    localStorage.setItem(
-                        "studenthub-theme",
-                        "dark"
-                    );
-
-                    themeButton.textContent =
-                        "☀️ Light Mode";
-
-                } else {
-
-                    localStorage.setItem(
-                        "studenthub-theme",
-                        "light"
-                    );
-
-                    themeButton.textContent =
-                        "🌙 Dark Mode";
-
-                }
-
-            }
+        localStorage.setItem(
+            "studenthub-theme",
+            dark ? "dark" : "light"
         );
 
-    }
+        button.textContent =
+            dark ? "☀ Light Mode" : "🌙 Dark Mode";
+
+    });
 
 }
 
 
-/* ============================================
-   FETCH EVENTS
-   ============================================ */
+/* ==========================================
+   EVENTS - FETCH
+   ========================================== */
 
 async function loadEvents() {
 
     const container =
         document.getElementById("eventsContainer");
 
-    if (!container) {
-        return;
-    }
+    if (!container) return;
 
     showLoading(container);
 
@@ -167,15 +121,13 @@ async function loadEvents() {
             await fetch("events.json");
 
         if (!response.ok) {
-
-            throw new Error(
-                "Unable to load events."
-            );
-
+            throw new Error("Events JSON could not be loaded.");
         }
 
         eventsData =
             await response.json();
+
+        createEventCategoryOptions();
 
         displayEvents();
 
@@ -183,155 +135,136 @@ async function loadEvents() {
 
     } catch (error) {
 
-        showError(
-            container,
-            error.message
-        );
+        showError(container, error.message);
 
-        console.error(
-            "Events Error:",
-            error
-        );
+        console.error(error);
 
     }
 
 }
 
 
-/* ============================================
+/* ==========================================
+   EVENT CATEGORY OPTIONS
+   ========================================== */
+
+function createEventCategoryOptions() {
+
+    const select =
+        document.getElementById("eventCategory");
+
+    if (!select) return;
+
+    const categories =
+        [...new Set(
+            eventsData.map(event => event.category)
+        )];
+
+    select.innerHTML =
+        `<option value="All">All Categories</option>`;
+
+    categories.forEach(category => {
+
+        select.innerHTML += `
+            <option value="${category}">
+                ${category}
+            </option>
+        `;
+
+    });
+
+}
+
+
+/* ==========================================
    DISPLAY EVENTS
-   ============================================ */
+   ========================================== */
 
 function displayEvents() {
 
     const container =
-        document.getElementById(
-            "eventsContainer"
-        );
+        document.getElementById("eventsContainer");
 
-    if (!container) {
-        return;
-    }
+    if (!container) return;
+
+    let data = [...eventsData];
 
     const searchInput =
-        document.getElementById(
-            "eventSearch"
-        );
+        document.getElementById("eventSearch");
 
-    const categoryFilter =
-        document.getElementById(
-            "eventCategory"
-        );
+    const category =
+        document.getElementById("eventCategory");
 
-    const sortSelect =
-        document.getElementById(
-            "eventSort"
-        );
+    const sort =
+        document.getElementById("eventSort");
 
 
-    let data =
-        [...eventsData];
+    const search =
+        searchInput
+            ? searchInput.value.toLowerCase().trim()
+            : "";
 
 
     /* SEARCH */
 
-    const search =
-        searchInput
-            ? searchInput.value
-                .toLowerCase()
-                .trim()
-            : "";
-
-
     if (search) {
 
-        data =
-            data.filter(function (event) {
+        data = data.filter(event =>
 
-                return (
-                    event.title
-                        .toLowerCase()
-                        .includes(search)
+            event.title.toLowerCase().includes(search) ||
 
-                    ||
+            event.description.toLowerCase().includes(search) ||
 
-                    event.description
-                        .toLowerCase()
-                        .includes(search)
+            event.organizer.toLowerCase().includes(search)
 
-                    ||
-
-                    event.organizer
-                        .toLowerCase()
-                        .includes(search)
-                );
-
-            });
+        );
 
     }
 
 
     /* FILTER */
 
-    const category =
-        categoryFilter
-            ? categoryFilter.value
-            : "All";
+    if (category && category.value !== "All") {
 
-
-    if (category !== "All") {
-
-        data =
-            data.filter(function (event) {
-
-                return event.category === category;
-
-            });
+        data = data.filter(event =>
+            event.category === category.value
+        );
 
     }
 
 
     /* SORT */
 
-    const sort =
-        sortSelect
-            ? sortSelect.value
-            : "dateAsc";
+    if (sort) {
 
+        if (sort.value === "dateAsc") {
 
-    if (sort === "dateAsc") {
-
-        data.sort(function (a, b) {
-
-            return new Date(a.date) -
-                   new Date(b.date);
-
-        });
-
-    }
-
-
-    if (sort === "dateDesc") {
-
-        data.sort(function (a, b) {
-
-            return new Date(b.date) -
-                   new Date(a.date);
-
-        });
-
-    }
-
-
-    if (sort === "nameAsc") {
-
-        data.sort(function (a, b) {
-
-            return a.title.localeCompare(
-                b.title
+            data.sort(
+                (a, b) =>
+                    new Date(a.date) -
+                    new Date(b.date)
             );
 
-        });
+        }
+
+        if (sort.value === "dateDesc") {
+
+            data.sort(
+                (a, b) =>
+                    new Date(b.date) -
+                    new Date(a.date)
+            );
+
+        }
+
+        if (sort.value === "nameAsc") {
+
+            data.sort(
+                (a, b) =>
+                    a.title.localeCompare(b.title)
+            );
+
+        }
 
     }
 
@@ -339,23 +272,14 @@ function displayEvents() {
     /* PAGINATION */
 
     const totalPages =
-        Math.ceil(
-            data.length / recordsPerPage
-        );
-
+        Math.ceil(data.length / recordsPerPage);
 
     if (eventPage > totalPages) {
-
-        eventPage =
-            Math.max(totalPages, 1);
-
+        eventPage = Math.max(totalPages, 1);
     }
 
-
     const start =
-        (eventPage - 1) *
-        recordsPerPage;
-
+        (eventPage - 1) * recordsPerPage;
 
     const pageData =
         data.slice(
@@ -376,43 +300,39 @@ function displayEvents() {
     } else {
 
         container.innerHTML =
-            pageData
-                .map(function (event) {
+            pageData.map(event => `
 
-                    return `
-                        <article class="data-card">
+                <article class="data-card">
 
-                            <h3>${event.title}</h3>
+                    <h3>${event.title}</h3>
 
-                            <p>
-                                <strong>Category:</strong>
-                                ${event.category}
-                            </p>
+                    <p>
+                        <strong>Category:</strong>
+                        ${event.category}
+                    </p>
 
-                            <p>
-                                <strong>Date:</strong>
-                                ${event.date}
-                            </p>
+                    <p>
+                        <strong>Date:</strong>
+                        ${event.date}
+                    </p>
 
-                            <p>
-                                <strong>Venue:</strong>
-                                ${event.venue}
-                            </p>
+                    <p>
+                        <strong>Venue:</strong>
+                        ${event.venue}
+                    </p>
 
-                            <p>
-                                <strong>Organizer:</strong>
-                                ${event.organizer}
-                            </p>
+                    <p>
+                        <strong>Organizer:</strong>
+                        ${event.organizer}
+                    </p>
 
-                            <p>
-                                ${event.description}
-                            </p>
+                    <p>
+                        ${event.description}
+                    </p>
 
-                        </article>
-                    `;
+                </article>
 
-                })
-                .join("");
+            `).join("");
 
     }
 
@@ -421,10 +341,9 @@ function displayEvents() {
         "eventPagination",
         eventPage,
         totalPages,
-        function (page) {
+        page => {
 
             eventPage = page;
-
             displayEvents();
 
         }
@@ -433,92 +352,70 @@ function displayEvents() {
 }
 
 
-/* ============================================
+/* ==========================================
    EVENT CONTROLS
-   ============================================ */
+   ========================================== */
 
 function setupEventControls() {
 
-    const searchInput =
-        document.getElementById(
-            "eventSearch"
-        );
+    const search =
+        document.getElementById("eventSearch");
 
-    const categoryFilter =
-        document.getElementById(
-            "eventCategory"
-        );
+    const category =
+        document.getElementById("eventCategory");
 
-    const sortSelect =
-        document.getElementById(
-            "eventSort"
-        );
+    const sort =
+        document.getElementById("eventSort");
 
 
-    if (searchInput) {
+    if (search) {
 
-        searchInput.addEventListener(
-            "input",
-            function () {
+        search.addEventListener("input", () => {
 
-                eventPage = 1;
+            eventPage = 1;
+            displayEvents();
 
-                displayEvents();
-
-            }
-        );
+        });
 
     }
 
 
-    if (categoryFilter) {
+    if (category) {
 
-        categoryFilter.addEventListener(
-            "change",
-            function () {
+        category.addEventListener("change", () => {
 
-                eventPage = 1;
+            eventPage = 1;
+            displayEvents();
 
-                displayEvents();
-
-            }
-        );
+        });
 
     }
 
 
-    if (sortSelect) {
+    if (sort) {
 
-        sortSelect.addEventListener(
-            "change",
-            function () {
+        sort.addEventListener("change", () => {
 
-                eventPage = 1;
+            eventPage = 1;
+            displayEvents();
 
-                displayEvents();
-
-            }
-        );
+        });
 
     }
 
 }
 
 
-/* ============================================
-   FETCH STUDENTS
-   ============================================ */
+/* ==========================================
+   STUDENTS - FETCH
+   ========================================== */
 
 async function loadStudents() {
 
     const container =
-        document.getElementById(
-            "studentsContainer"
-        );
+        document.getElementById("studentsContainer");
 
-    if (!container) {
-        return;
-    }
+    if (!container) return;
 
     showLoading(container);
 
@@ -528,15 +425,15 @@ async function loadStudents() {
             await fetch("students.json");
 
         if (!response.ok) {
-
             throw new Error(
-                "Unable to load students."
+                "Students JSON could not be loaded."
             );
-
         }
 
         studentsData =
             await response.json();
+
+        createCourseOptions();
 
         displayStudents();
 
@@ -544,158 +441,134 @@ async function loadStudents() {
 
     } catch (error) {
 
-        showError(
-            container,
-            error.message
-        );
+        showError(container, error.message);
 
-        console.error(
-            "Students Error:",
-            error
-        );
+        console.error(error);
 
     }
 
 }
 
 
-/* ============================================
+/* ==========================================
+   COURSE OPTIONS
+   ========================================== */
+
+function createCourseOptions() {
+
+    const select =
+        document.getElementById("studentCourse");
+
+    if (!select) return;
+
+    const courses =
+        [...new Set(
+            studentsData.map(student => student.course)
+        )];
+
+    select.innerHTML =
+        `<option value="All">All Courses</option>`;
+
+    courses.forEach(course => {
+
+        select.innerHTML += `
+            <option value="${course}">
+                ${course}
+            </option>
+        `;
+
+    });
+
+}
+
+
+/* ==========================================
    DISPLAY STUDENTS
-   ============================================ */
+   ========================================== */
 
 function displayStudents() {
 
     const container =
-        document.getElementById(
-            "studentsContainer"
-        );
+        document.getElementById("studentsContainer");
 
-    if (!container) {
-        return;
-    }
+    if (!container) return;
 
+    let data = [...studentsData];
 
     const searchInput =
-        document.getElementById(
-            "studentSearch"
-        );
+        document.getElementById("studentSearch");
 
-    const courseFilter =
-        document.getElementById(
-            "studentCourse"
-        );
+    const course =
+        document.getElementById("studentCourse");
 
-    const sortSelect =
-        document.getElementById(
-            "studentSort"
-        );
+    const sort =
+        document.getElementById("studentSort");
 
 
-    let data =
-        [...studentsData];
+    const search =
+        searchInput
+            ? searchInput.value.toLowerCase().trim()
+            : "";
 
 
     /* SEARCH */
 
-    const search =
-        searchInput
-            ? searchInput.value
-                .toLowerCase()
-                .trim()
-            : "";
-
-
     if (search) {
 
-        data =
-            data.filter(function (student) {
+        data = data.filter(student =>
 
-                return (
+            student.name.toLowerCase().includes(search) ||
 
-                    student.name
-                        .toLowerCase()
-                        .includes(search)
+            student.course.toLowerCase().includes(search) ||
 
-                    ||
+            student.city.toLowerCase().includes(search)
 
-                    student.course
-                        .toLowerCase()
-                        .includes(search)
-
-                    ||
-
-                    student.city
-                        .toLowerCase()
-                        .includes(search)
-
-                );
-
-            });
+        );
 
     }
 
 
     /* FILTER */
 
-    const course =
-        courseFilter
-            ? courseFilter.value
-            : "All";
+    if (course && course.value !== "All") {
 
-
-    if (course !== "All") {
-
-        data =
-            data.filter(function (student) {
-
-                return student.course === course;
-
-            });
+        data = data.filter(student =>
+            student.course === course.value
+        );
 
     }
 
 
     /* SORT */
 
-    const sort =
-        sortSelect
-            ? sortSelect.value
-            : "nameAsc";
+    if (sort) {
 
+        if (sort.value === "nameAsc") {
 
-    if (sort === "nameAsc") {
-
-        data.sort(function (a, b) {
-
-            return a.name.localeCompare(
-                b.name
+            data.sort(
+                (a, b) =>
+                    a.name.localeCompare(b.name)
             );
 
-        });
+        }
 
-    }
+        if (sort.value === "nameDesc") {
 
-
-    if (sort === "nameDesc") {
-
-        data.sort(function (a, b) {
-
-            return b.name.localeCompare(
-                a.name
+            data.sort(
+                (a, b) =>
+                    b.name.localeCompare(a.name)
             );
 
-        });
+        }
 
-    }
+        if (sort.value === "yearAsc") {
 
+            data.sort(
+                (a, b) =>
+                    a.year - b.year
+            );
 
-    if (sort === "yearAsc") {
-
-        data.sort(function (a, b) {
-
-            return a.year - b.year;
-
-        });
+        }
 
     }
 
@@ -703,23 +576,14 @@ function displayStudents() {
     /* PAGINATION */
 
     const totalPages =
-        Math.ceil(
-            data.length / recordsPerPage
-        );
-
+        Math.ceil(data.length / recordsPerPage);
 
     if (studentPage > totalPages) {
-
-        studentPage =
-            Math.max(totalPages, 1);
-
+        studentPage = Math.max(totalPages, 1);
     }
 
-
     const start =
-        (studentPage - 1) *
-        recordsPerPage;
-
+        (studentPage - 1) * recordsPerPage;
 
     const pageData =
         data.slice(
@@ -727,8 +591,6 @@ function displayStudents() {
             start + recordsPerPage
         );
 
-
-    /* RENDER */
 
     if (pageData.length === 0) {
 
@@ -740,46 +602,40 @@ function displayStudents() {
     } else {
 
         container.innerHTML =
-            pageData
-                .map(function (student) {
+            pageData.map(student => `
 
-                    return `
-                        <article class="data-card">
+                <article class="data-card">
 
-                            <h3>
-                                ${student.name}
-                            </h3>
+                    <h3>${student.name}</h3>
 
-                            <p>
-                                <strong>Course:</strong>
-                                ${student.course}
-                            </p>
+                    <p>
+                        <strong>Course:</strong>
+                        ${student.course}
+                    </p>
 
-                            <p>
-                                <strong>Year:</strong>
-                                ${student.year}
-                            </p>
+                    <p>
+                        <strong>Year:</strong>
+                        ${student.year}
+                    </p>
 
-                            <p>
-                                <strong>Department:</strong>
-                                ${student.department}
-                            </p>
+                    <p>
+                        <strong>Department:</strong>
+                        ${student.department}
+                    </p>
 
-                            <p>
-                                <strong>Email:</strong>
-                                ${student.email}
-                            </p>
+                    <p>
+                        <strong>Email:</strong>
+                        ${student.email}
+                    </p>
 
-                            <p>
-                                <strong>City:</strong>
-                                ${student.city}
-                            </p>
+                    <p>
+                        <strong>City:</strong>
+                        ${student.city}
+                    </p>
 
-                        </article>
-                    `;
+                </article>
 
-                })
-                .join("");
+            `).join("");
 
     }
 
@@ -788,10 +644,9 @@ function displayStudents() {
         "studentPagination",
         studentPage,
         totalPages,
-        function (page) {
+        page => {
 
             studentPage = page;
-
             displayStudents();
 
         }
@@ -800,92 +655,70 @@ function displayStudents() {
 }
 
 
-/* ============================================
+/* ==========================================
    STUDENT CONTROLS
-   ============================================ */
+   ========================================== */
 
 function setupStudentControls() {
 
-    const searchInput =
-        document.getElementById(
-            "studentSearch"
-        );
+    const search =
+        document.getElementById("studentSearch");
 
-    const courseFilter =
-        document.getElementById(
-            "studentCourse"
-        );
+    const course =
+        document.getElementById("studentCourse");
 
-    const sortSelect =
-        document.getElementById(
-            "studentSort"
-        );
+    const sort =
+        document.getElementById("studentSort");
 
 
-    if (searchInput) {
+    if (search) {
 
-        searchInput.addEventListener(
-            "input",
-            function () {
+        search.addEventListener("input", () => {
 
-                studentPage = 1;
+            studentPage = 1;
+            displayStudents();
 
-                displayStudents();
-
-            }
-        );
+        });
 
     }
 
 
-    if (courseFilter) {
+    if (course) {
 
-        courseFilter.addEventListener(
-            "change",
-            function () {
+        course.addEventListener("change", () => {
 
-                studentPage = 1;
+            studentPage = 1;
+            displayStudents();
 
-                displayStudents();
-
-            }
-        );
+        });
 
     }
 
 
-    if (sortSelect) {
+    if (sort) {
 
-        sortSelect.addEventListener(
-            "change",
-            function () {
+        sort.addEventListener("change", () => {
 
-                studentPage = 1;
+            studentPage = 1;
+            displayStudents();
 
-                displayStudents();
-
-            }
-        );
+        });
 
     }
 
 }
 
 
-/* ============================================
-   FETCH FAQs
-   ============================================ */
+/* ==========================================
+   FAQ - FETCH
+   ========================================== */
 
 async function loadFAQs() {
 
     const container =
-        document.getElementById(
-            "faqContainer"
-        );
+        document.getElementById("faqContainer");
 
-    if (!container) {
-        return;
-    }
+    if (!container) return;
 
     showLoading(container);
 
@@ -895,15 +728,15 @@ async function loadFAQs() {
             await fetch("faqs.json");
 
         if (!response.ok) {
-
             throw new Error(
-                "Unable to load FAQs."
+                "FAQ JSON could not be loaded."
             );
-
         }
 
         faqsData =
             await response.json();
+
+        createFAQCategories();
 
         displayFAQs();
 
@@ -911,126 +744,104 @@ async function loadFAQs() {
 
     } catch (error) {
 
-        showError(
-            container,
-            error.message
-        );
+        showError(container, error.message);
 
-        console.error(
-            "FAQ Error:",
-            error
-        );
+        console.error(error);
 
     }
 
 }
 
 
-/* ============================================
+/* ==========================================
+   FAQ CATEGORIES
+   ========================================== */
+
+function createFAQCategories() {
+
+    const select =
+        document.getElementById("faqCategory");
+
+    if (!select) return;
+
+    const categories =
+        [...new Set(
+            faqsData.map(faq => faq.category)
+        )];
+
+    select.innerHTML =
+        `<option value="All">All Categories</option>`;
+
+    categories.forEach(category => {
+
+        select.innerHTML += `
+            <option value="${category}">
+                ${category}
+            </option>
+        `;
+
+    });
+
+}
+
+
+/* ==========================================
    DISPLAY FAQs
-   ============================================ */
+   ========================================== */
 
 function displayFAQs() {
 
     const container =
-        document.getElementById(
-            "faqContainer"
-        );
+        document.getElementById("faqContainer");
 
-    if (!container) {
-        return;
-    }
+    if (!container) return;
 
+    let data = [...faqsData];
 
     const searchInput =
-        document.getElementById(
-            "faqSearch"
-        );
+        document.getElementById("faqSearch");
 
-    const categoryFilter =
-        document.getElementById(
-            "faqCategory"
-        );
+    const category =
+        document.getElementById("faqCategory");
 
-
-    let data =
-        [...faqsData];
-
-
-    /* SEARCH */
 
     const search =
         searchInput
-            ? searchInput.value
-                .toLowerCase()
-                .trim()
+            ? searchInput.value.toLowerCase().trim()
             : "";
 
 
     if (search) {
 
-        data =
-            data.filter(function (faq) {
+        data = data.filter(faq =>
 
-                return (
+            faq.question.toLowerCase().includes(search) ||
 
-                    faq.question
-                        .toLowerCase()
-                        .includes(search)
+            faq.answer.toLowerCase().includes(search)
 
-                    ||
-
-                    faq.answer
-                        .toLowerCase()
-                        .includes(search)
-
-                );
-
-            });
-
-    }
-
-
-    /* FILTER */
-
-    const category =
-        categoryFilter
-            ? categoryFilter.value
-            : "All";
-
-
-    if (category !== "All") {
-
-        data =
-            data.filter(function (faq) {
-
-                return faq.category === category;
-
-            });
-
-    }
-
-
-    /* PAGINATION */
-
-    const totalPages =
-        Math.ceil(
-            data.length / recordsPerPage
         );
 
+    }
 
-    if (faqPage > totalPages) {
 
-        faqPage =
-            Math.max(totalPages, 1);
+    if (category && category.value !== "All") {
+
+        data = data.filter(faq =>
+            faq.category === category.value
+        );
 
     }
 
 
-    const start =
-        (faqPage - 1) *
-        recordsPerPage;
+    const totalPages =
+        Math.ceil(data.length / recordsPerPage);
 
+    if (faqPage > totalPages) {
+        faqPage = Math.max(totalPages, 1);
+    }
+
+    const start =
+        (faqPage - 1) * recordsPerPage;
 
     const pageData =
         data.slice(
@@ -1038,8 +849,6 @@ function displayFAQs() {
             start + recordsPerPage
         );
 
-
-    /* RENDER */
 
     if (pageData.length === 0) {
 
@@ -1051,74 +860,56 @@ function displayFAQs() {
     } else {
 
         container.innerHTML =
-            pageData
-                .map(function (faq) {
+            pageData.map(faq => `
 
-                    return `
-                        <article class="faq-item">
+                <article class="faq-item">
 
-                            <button
-                                class="faq-question"
-                                type="button"
-                                aria-expanded="false">
+                    <button
+                        class="faq-question"
+                        type="button"
+                        aria-expanded="false">
 
-                                ${faq.question}
+                        ${faq.question}
 
-                            </button>
+                    </button>
 
-                            <div
-                                class="faq-answer"
-                                hidden>
+                    <div
+                        class="faq-answer"
+                        hidden>
 
-                                <p>
-                                    ${faq.answer}
-                                </p>
+                        <p>${faq.answer}</p>
 
-                            </div>
+                    </div>
 
-                        </article>
-                    `;
+                </article>
 
-                })
-                .join("");
+            `).join("");
 
 
-        /* FAQ CLICK EVENTS */
+        document
+            .querySelectorAll(".faq-question")
+            .forEach(button => {
 
-        const buttons =
-            container.querySelectorAll(
-                ".faq-question"
-            );
-
-
-        buttons.forEach(function (button) {
-
-            button.addEventListener(
-                "click",
-                function () {
+                button.addEventListener("click", () => {
 
                     const answer =
                         button.nextElementSibling;
 
-                    const isOpen =
+                    const open =
                         button.getAttribute(
                             "aria-expanded"
                         ) === "true";
 
-
                     button.setAttribute(
                         "aria-expanded",
-                        !isOpen
+                        !open
                     );
 
+                    answer.hidden = open;
 
-                    answer.hidden =
-                        isOpen;
+                });
 
-                }
-            );
-
-        });
+            });
 
     }
 
@@ -1127,10 +918,9 @@ function displayFAQs() {
         "faqPagination",
         faqPage,
         totalPages,
-        function (page) {
+        page => {
 
             faqPage = page;
-
             displayFAQs();
 
         }
@@ -1139,77 +929,60 @@ function displayFAQs() {
 }
 
 
-/* ============================================
+/* ==========================================
    FAQ CONTROLS
-   ============================================ */
+   ========================================== */
 
 function setupFAQControls() {
 
-    const searchInput =
-        document.getElementById(
-            "faqSearch"
-        );
+    const search =
+        document.getElementById("faqSearch");
 
-    const categoryFilter =
-        document.getElementById(
-            "faqCategory"
-        );
+    const category =
+        document.getElementById("faqCategory");
 
 
-    if (searchInput) {
+    if (search) {
 
-        searchInput.addEventListener(
-            "input",
-            function () {
+        search.addEventListener("input", () => {
 
-                faqPage = 1;
+            faqPage = 1;
+            displayFAQs();
 
-                displayFAQs();
-
-            }
-        );
+        });
 
     }
 
 
-    if (categoryFilter) {
+    if (category) {
 
-        categoryFilter.addEventListener(
-            "change",
-            function () {
+        category.addEventListener("change", () => {
 
-                faqPage = 1;
+            faqPage = 1;
+            displayFAQs();
 
-                displayFAQs();
-
-            }
-        );
+        });
 
     }
 
 }
 
 
-/* ============================================
+/* ==========================================
    PAGINATION
-   ============================================ */
+   ========================================== */
 
 function renderPagination(
-    containerId,
+    id,
     currentPage,
     totalPages,
-    changePage
+    callback
 ) {
 
     const container =
-        document.getElementById(
-            containerId
-        );
+        document.getElementById(id);
 
-    if (!container) {
-        return;
-    }
-
+    if (!container) return;
 
     if (totalPages <= 1) {
 
@@ -1279,76 +1052,59 @@ function renderPagination(
     container.innerHTML = html;
 
 
-    const buttons =
-        container.querySelectorAll(
-            ".page-button"
-        );
+    container
+        .querySelectorAll(".page-button")
+        .forEach(button => {
 
+            button.addEventListener("click", () => {
 
-    buttons.forEach(function (button) {
-
-        button.addEventListener(
-            "click",
-            function () {
-
-                const page =
-                    Number(
-                        button.dataset.page
-                    );
-
-                changePage(page);
+                callback(
+                    Number(button.dataset.page)
+                );
 
                 window.scrollTo({
                     top: 0,
                     behavior: "smooth"
                 });
 
-            }
-        );
+            });
 
-    });
+        });
 
 }
 
 
-/* ============================================
+/* ==========================================
    LOADING
-   ============================================ */
+   ========================================== */
 
 function showLoading(container) {
 
     container.innerHTML = `
         <div class="loading">
-            Loading data...
+            Loading data from JSON...
         </div>
     `;
 
 }
 
 
-/* ============================================
+/* ==========================================
    ERROR
-   ============================================ */
+   ========================================== */
 
-function showError(
-    container,
-    message
-) {
+function showError(container, message) {
 
     container.innerHTML = `
         <div class="error-message">
 
-            <h3>
-                Unable to load data
-            </h3>
+            <strong>Error:</strong>
+
+            <p>${message}</p>
 
             <p>
-                ${message}
-            </p>
-
-            <p>
-                Please check the JSON file
-                and try again.
+                Check that the JSON file is
+                present in the project folder.
             </p>
 
         </div>

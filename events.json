@@ -1,57 +1,57 @@
 [
     {
         "id": 1,
-        "title": "AI & Machine Learning Workshop",
-        "category": "Workshop",
+        "title": "Coding Hackathon",
+        "category": "Competition",
         "date": "2026-10-05",
         "venue": "Innovation Lab",
-        "organizer": "AI Club",
-        "description": "Introduction to artificial intelligence and machine learning."
+        "organizer": "Coding Club",
+        "description": "24-hour coding competition for university students."
     },
     {
         "id": 2,
-        "title": "Web Development Bootcamp",
+        "title": "AI Workshop",
         "category": "Workshop",
         "date": "2026-10-08",
-        "venue": "Computer Lab 1",
-        "organizer": "Coding Club",
-        "description": "Learn HTML, CSS and JavaScript through practical projects."
+        "venue": "Computer Lab",
+        "organizer": "AI Club",
+        "description": "Learn basic Artificial Intelligence and Machine Learning."
     },
     {
         "id": 3,
-        "title": "Annual Sports Meet",
-        "category": "Sports",
+        "title": "Cultural Event",
+        "category": "Cultural",
         "date": "2026-10-12",
-        "venue": "University Ground",
-        "organizer": "Sports Committee",
-        "description": "Annual sports competition for university students."
+        "venue": "Main Ground",
+        "organizer": "Cultural Club",
+        "description": "Enjoy music, dance and student performances."
     },
     {
         "id": 4,
-        "title": "Hackathon 2026",
-        "category": "Competition",
+        "title": "Web Development Workshop",
+        "category": "Workshop",
         "date": "2026-10-15",
-        "venue": "Innovation Centre",
-        "organizer": "Technical Club",
-        "description": "A 24-hour coding and innovation competition."
+        "venue": "Computer Lab 1",
+        "organizer": "Coding Club",
+        "description": "Learn HTML, CSS and JavaScript."
     },
     {
         "id": 5,
-        "title": "Photography Competition",
-        "category": "Competition",
+        "title": "Sports Meet",
+        "category": "Sports",
         "date": "2026-10-18",
-        "venue": "Seminar Hall",
-        "organizer": "Creative Club",
-        "description": "Students can participate in a campus photography competition."
+        "venue": "University Ground",
+        "organizer": "Sports Committee",
+        "description": "Annual sports competition."
     },
     {
         "id": 6,
-        "title": "Cyber Security Awareness",
+        "title": "Cyber Security Seminar",
         "category": "Seminar",
         "date": "2026-10-20",
         "venue": "Auditorium",
-        "organizer": "Cyber Security Club",
-        "description": "Learn about online safety, privacy and cyber security."
+        "organizer": "Cyber Club",
+        "description": "Learn about online security and privacy."
     },
     {
         "id": 7,
@@ -60,7 +60,7 @@
         "date": "2026-10-22",
         "venue": "Computer Lab 2",
         "organizer": "Programming Club",
-        "description": "Basic Java programming concepts and object-oriented programming."
+        "description": "Introduction to Java and OOP."
     },
     {
         "id": 8,
@@ -69,7 +69,7 @@
         "date": "2026-10-25",
         "venue": "Seminar Hall",
         "organizer": "E-Cell",
-        "description": "An interactive session about startups and entrepreneurship."
+        "description": "Startup and entrepreneurship session."
     },
     {
         "id": 9,
@@ -78,16 +78,16 @@
         "date": "2026-10-28",
         "venue": "Computer Lab 3",
         "organizer": "Coding Club",
-        "description": "Competitive programming contest for students."
+        "description": "Competitive programming contest."
     },
     {
         "id": 10,
         "title": "NSS Community Drive",
         "category": "Social",
         "date": "2026-11-02",
-        "venue": "University Campus",
+        "venue": "Campus",
         "organizer": "NSS Unit",
-        "description": "Community service activity organized by NSS volunteers."
+        "description": "Community service activity."
     },
     {
         "id": 11,
@@ -96,7 +96,7 @@
         "date": "2026-11-05",
         "venue": "Robotics Lab",
         "organizer": "Robotics Club",
-        "description": "Hands-on introduction to robotics and embedded systems."
+        "description": "Hands-on robotics workshop."
     },
     {
         "id": 12,
@@ -105,7 +105,7 @@
         "date": "2026-11-08",
         "venue": "Seminar Hall",
         "organizer": "Placement Cell",
-        "description": "Learn how to create an effective resume."
+        "description": "Learn how to create a professional resume."
     },
     {
         "id": 13,
@@ -114,16 +114,16 @@
         "date": "2026-11-12",
         "venue": "Main Ground",
         "organizer": "Cultural Committee",
-        "description": "Music, dance and cultural performances by students."
+        "description": "University cultural festival."
     },
     {
         "id": 14,
         "title": "Cloud Computing Workshop",
         "category": "Workshop",
         "date": "2026-11-15",
-        "venue": "Computer Lab 1",
+        "venue": "Computer Lab",
         "organizer": "IT Club",
-        "description": "Introduction to cloud computing and cloud services."
+        "description": "Introduction to cloud computing."
     },
     {
         "id": 15,
@@ -132,6 +132,6 @@
         "date": "2026-11-20",
         "venue": "Innovation Centre",
         "organizer": "University",
-        "description": "Students showcase their academic and technical projects."
+        "description": "Students showcase their academic projects."
     }
 ]

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,84 +10,116 @@
 
 <body>
 
-    <a href="#main-content">Skip to main content</a>
+<header>
 
-    <header>
-        <h1>StudentHub</h1>
+    <h1>StudentHub</h1>
 
-        <nav aria-label="Main navigation">
-            <a href="homepage.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="events.html">Events</a>
-            <a href="profile.html">Profile</a>
-            <a href="register.html">Register</a>
-            <a href="login.html">Login</a>
-            <a href="contact.html">Contact</a>
-            <a href="faq.html">FAQ</a>
-            <a href="feedback.html">Feedback</a>
-        </nav>
-    </header>
+    <button id="menuButton" aria-expanded="false">
+        ☰ Menu
+    </button>
 
-    <main id="main-content">
+    <nav id="mainNav">
 
-        <nav aria-label="Breadcrumb">
-            <a href="homepage.html">Home</a>
-            &gt;
-            <span aria-current="page">Login</span>
-        </nav>
+        <a href="homepage.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="events.html">Events</a>
+        <a href="profile.html">Profile</a>
+        <a href="attendance.html">Attendance</a>
+        <a href="results.html">Results</a>
+        <a href="registration.html">Register</a>
+        <a href="login.html">Login</a>
+        <a href="contact.html">Contact</a>
+        <a href="faq.html">FAQ</a>
+        <a href="feedback.html">Feedback</a>
 
-        <section>
-            <h2>Student Login</h2>
+    </nav>
 
-            <form action="#" method="post">
+    <button id="themeButton">🌙 Dark Mode</button>
 
-                <p>
-                    <label for="enrollment">Enrollment Number:</label><br>
-                    <input
-                        type="text"
-                        id="enrollment"
-                        name="enrollment"
-                        autocomplete="username"
-                        required>
-                </p>
+</header>
 
-                <p>
-                    <label for="password">Password:</label><br>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        autocomplete="current-password"
-                        required>
-                </p>
 
-                <p>
+<main>
+
+    <section class="form-container">
+
+        <h2>Student Login</h2>
+
+        <form>
+
+            <div class="form-group">
+
+                <label for="enrollment">
+                    Enrollment Number
+                </label>
+
+                <input
+                    id="enrollment"
+                    type="text"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    id="password"
+                    type="password"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
                     <input
                         type="checkbox"
-                        id="remember"
-                        name="remember">
+                        style="width:auto">
 
-                    <label for="remember">Remember me</label>
-                </p>
+                    Remember me
 
-                <button type="submit">Login</button>
+                </label>
 
-            </form>
-        </section>
+            </div>
 
-        <aside>
-            <h2>New Student?</h2>
-            <p>
-                <a href="register.html">Create a new account</a>
-            </p>
-        </aside>
 
-    </main>
+            <button class="btn"
+                    type="submit">
 
-    <footer>
-        <p>&copy; 2026 StudentHub. All rights reserved.</p>
-    </footer>
+                Login
+
+            </button>
+
+        </form>
+
+
+        <p style="margin-top:15px">
+
+            New Student?
+
+            <a href="registration.html">
+                Create a new account
+            </a>
+
+        </p>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <p>© 2026 StudentHub. All rights reserved.</p>
+</footer>
+
 <script src="script.js"></script>
+
 </body>
 </html>

@@ -2,19 +2,10 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudentHub - Home</title>
-
-    <link
-        rel="stylesheet"
-        href="style.css">
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -23,39 +14,30 @@
 
     <h1>StudentHub</h1>
 
-    <button
-        id="menuButton"
-        type="button"
-        aria-expanded="false">
-
+    <button id="menuButton"
+            aria-expanded="false">
         ☰ Menu
-
     </button>
 
-    <nav
-        id="mainNav"
-        aria-label="Main navigation">
+    <nav id="mainNav" aria-label="Main Navigation">
 
         <a href="homepage.html">Home</a>
         <a href="about.html">About</a>
         <a href="dashboard.html">Dashboard</a>
         <a href="events.html">Events</a>
-        <a href="profile.html">Students</a>
+        <a href="profile.html">Profile</a>
         <a href="attendance.html">Attendance</a>
         <a href="results.html">Results</a>
+        <a href="registration.html">Register</a>
+        <a href="login.html">Login</a>
         <a href="contact.html">Contact</a>
         <a href="faq.html">FAQ</a>
         <a href="feedback.html">Feedback</a>
-        <a href="login.html">Login</a>
 
     </nav>
 
-    <button
-        id="themeButton"
-        type="button">
-
+    <button id="themeButton">
         🌙 Dark Mode
-
     </button>
 
 </header>
@@ -63,37 +45,76 @@
 
 <main>
 
-    <section>
+    <section class="hero">
 
         <h2>Welcome to StudentHub</h2>
 
         <p>
-            StudentHub is a student portal for managing
-            academic information, events and student services.
+            StudentHub is a student portal that manages
+            academic information, events, attendance,
+            results and personal details.
         </p>
 
-        <p>
-            This version uses JavaScript Fetch API to
-            dynamically load JSON data.
-        </p>
+        <div class="hero-buttons">
+
+            <a class="btn" href="registration.html">
+                Register Now
+            </a>
+
+            <a class="btn" href="login.html">
+                Login
+            </a>
+
+        </div>
 
     </section>
 
 
     <section>
 
-        <h2>Latest Events</h2>
+        <h2>StudentHub Features</h2>
 
-        <div
-            id="eventsContainer"
-            class="data-grid">
+        <div class="card-grid">
+
+            <article class="card">
+                <h3>📚 Academic Results</h3>
+                <p>View your examination marks and grades.</p>
+                <a href="results.html">View Results</a>
+            </article>
+
+            <article class="card">
+                <h3>📊 Attendance</h3>
+                <p>Check your subject-wise attendance.</p>
+                <a href="attendance.html">View Attendance</a>
+            </article>
+
+            <article class="card">
+                <h3>📅 Events</h3>
+                <p>Find upcoming college events and activities.</p>
+                <a href="events.html">View Events</a>
+            </article>
+
+            <article class="card">
+                <h3>👤 Profile</h3>
+                <p>View your student information.</p>
+                <a href="profile.html">View Profile</a>
+            </article>
 
         </div>
 
-        <div
-            id="eventPagination"
-            class="pagination">
+    </section>
 
+
+    <section>
+
+        <h2>Latest Events from JSON</h2>
+
+        <div id="eventsContainer"
+             class="data-grid">
+        </div>
+
+        <div id="eventPagination"
+             class="pagination">
         </div>
 
     </section>
@@ -102,16 +123,10 @@
 
 
 <footer>
-
-    <p>
-        &copy; 2026 StudentHub
-    </p>
-
+    <p>© 2026 StudentHub. All rights reserved.</p>
 </footer>
-
 
 <script src="script.js"></script>
 
 </body>
-
 </html>

@@ -2,17 +2,10 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudentHub - Dashboard</title>
-
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
@@ -21,11 +14,11 @@
 
     <h1>StudentHub</h1>
 
-    <button id="menuButton" type="button">
+    <button id="menuButton" aria-expanded="false">
         ☰ Menu
     </button>
 
-    <nav id="mainNav" aria-label="Main navigation">
+    <nav id="mainNav">
 
         <a href="homepage.html">Home</a>
         <a href="about.html">About</a>
@@ -34,7 +27,7 @@
         <a href="profile.html">Profile</a>
         <a href="attendance.html">Attendance</a>
         <a href="results.html">Results</a>
-        <a href="register.html">Register</a>
+        <a href="registration.html">Register</a>
         <a href="login.html">Login</a>
         <a href="contact.html">Contact</a>
         <a href="faq.html">FAQ</a>
@@ -42,104 +35,62 @@
 
     </nav>
 
-    <button id="themeButton" type="button">
-        🌙 Dark Mode
-    </button>
+    <button id="themeButton">🌙 Dark Mode</button>
 
 </header>
 
 
 <main>
 
-<section>
+    <section>
 
-    <h2>Student Dashboard</h2>
+        <h2>Student Dashboard</h2>
 
-    <p>
-        Welcome to your StudentHub dashboard.
-    </p>
+        <p>
+            Welcome to your StudentHub dashboard.
+        </p>
 
-</section>
-
-
-<section>
-
-    <div class="grid-container">
-
-        <article class="card">
-
-            <h3>👤 Profile</h3>
-
-            <p>
-                View personal information.
-            </p>
-
-            <a href="profile.html">
-                Open Profile
-            </a>
-
-        </article>
+    </section>
 
 
-        <article class="card">
+    <section>
 
-            <h3>📊 Attendance</h3>
+        <div class="card-grid">
 
-            <p>
-                Check attendance.
-            </p>
+            <article class="card">
+                <h3>👤 Profile</h3>
+                <p>View personal information.</p>
+                <a href="profile.html">Open Profile</a>
+            </article>
 
-            <a href="attendance.html">
-                Open Attendance
-            </a>
+            <article class="card">
+                <h3>📊 Attendance</h3>
+                <p>Check attendance.</p>
+                <a href="attendance.html">View Attendance</a>
+            </article>
 
-        </article>
+            <article class="card">
+                <h3>📚 Results</h3>
+                <p>View examination results.</p>
+                <a href="results.html">View Results</a>
+            </article>
 
+            <article class="card">
+                <h3>📅 Events</h3>
+                <p>Explore upcoming events.</p>
+                <a href="events.html">Open Events</a>
+            </article>
 
-        <article class="card">
+        </div>
 
-            <h3>📝 Results</h3>
-
-            <p>
-                View examination results.
-            </p>
-
-            <a href="results.html">
-                Open Results
-            </a>
-
-        </article>
-
-
-        <article class="card">
-
-            <h3>🎉 Events</h3>
-
-            <p>
-                Explore upcoming events.
-            </p>
-
-            <a href="events.html">
-                Open Events
-            </a>
-
-        </article>
-
-    </div>
-
-</section>
+    </section>
 
 </main>
 
 
 <footer>
-
-    <p>
-        &copy; 2026 StudentHub. All rights reserved.
-    </p>
-
+    <p>© 2026 StudentHub. All rights reserved.</p>
 </footer>
-
 
 <script src="script.js"></script>
 

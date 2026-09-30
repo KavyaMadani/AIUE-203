@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,11 +11,15 @@
 <body>
 
 <header>
+
     <h1>StudentHub</h1>
 
-    <button id="menuButton" type="button">☰ Menu</button>
+    <button id="menuButton" aria-expanded="false">
+        ☰ Menu
+    </button>
 
-    <nav id="mainNav" aria-label="Main navigation">
+    <nav id="mainNav">
+
         <a href="homepage.html">Home</a>
         <a href="about.html">About</a>
         <a href="dashboard.html">Dashboard</a>
@@ -22,42 +27,52 @@
         <a href="profile.html">Profile</a>
         <a href="attendance.html">Attendance</a>
         <a href="results.html">Results</a>
-        <a href="register.html">Register</a>
+        <a href="registration.html">Register</a>
         <a href="login.html">Login</a>
         <a href="contact.html">Contact</a>
         <a href="faq.html">FAQ</a>
         <a href="feedback.html">Feedback</a>
+
     </nav>
 
-    <button id="themeButton" type="button">🌙 Dark Mode</button>
+    <button id="themeButton">🌙 Dark Mode</button>
+
 </header>
+
 
 <main>
 
     <section>
+
         <h2>About StudentHub</h2>
 
         <p>
-            StudentHub is a centralized student portal designed
-            to provide students with easy access to academic
+            StudentHub is a student portal designed to
+            provide students with easy access to academic
             and university information.
         </p>
+
     </section>
 
+
     <section>
+
         <h2>Our Purpose</h2>
 
         <p>
-            The main purpose of StudentHub is to organize student
-            information in one place and make it easy to access.
+            The main purpose of StudentHub is to organize
+            student information in one place and make it
+            easy to access.
         </p>
+
     </section>
+
 
     <section>
 
         <h2>Our Services</h2>
 
-        <div class="grid-container">
+        <div class="card-grid">
 
             <article class="card">
                 <h3>Academic Information</h3>
@@ -71,12 +86,12 @@
 
             <article class="card">
                 <h3>Events</h3>
-                <p>Find workshops, seminars and college events.</p>
+                <p>Find upcoming university events.</p>
             </article>
 
             <article class="card">
                 <h3>Student Profile</h3>
-                <p>Manage your personal student information.</p>
+                <p>View student personal information.</p>
             </article>
 
         </div>
@@ -85,8 +100,9 @@
 
 </main>
 
+
 <footer>
-    <p>&copy; 2026 StudentHub. All rights reserved.</p>
+    <p>© 2026 StudentHub. All rights reserved.</p>
 </footer>
 
 <script src="script.js"></script>

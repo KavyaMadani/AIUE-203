@@ -2,17 +2,10 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudentHub - Results</title>
-
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
@@ -21,11 +14,11 @@
 
     <h1>StudentHub</h1>
 
-    <button id="menuButton" type="button">
+    <button id="menuButton" aria-expanded="false">
         ☰ Menu
     </button>
 
-    <nav id="mainNav" aria-label="Main navigation">
+    <nav id="mainNav">
 
         <a href="homepage.html">Home</a>
         <a href="about.html">About</a>
@@ -34,7 +27,7 @@
         <a href="profile.html">Profile</a>
         <a href="attendance.html">Attendance</a>
         <a href="results.html">Results</a>
-        <a href="register.html">Register</a>
+        <a href="registration.html">Register</a>
         <a href="login.html">Login</a>
         <a href="contact.html">Contact</a>
         <a href="faq.html">FAQ</a>
@@ -42,80 +35,71 @@
 
     </nav>
 
-    <button id="themeButton" type="button">
-        🌙 Dark Mode
-    </button>
+    <button id="themeButton">🌙 Dark Mode</button>
 
 </header>
 
 
 <main>
 
-<section>
+    <section>
 
-    <h2>Academic Results</h2>
+        <h2>Academic Results</h2>
 
-    <table>
+        <div class="table-wrapper">
 
-        <caption>
-            Semester Examination Results
-        </caption>
+            <table>
 
-        <thead>
+                <thead>
 
-            <tr>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Marks</th>
+                        <th>Grade</th>
+                    </tr>
 
-                <th>Subject</th>
-                <th>Marks</th>
-                <th>Grade</th>
+                </thead>
 
-            </tr>
+                <tbody>
 
-        </thead>
+                    <tr>
+                        <td>Data Structures</td>
+                        <td>85</td>
+                        <td>A</td>
+                    </tr>
 
-        <tbody>
+                    <tr>
+                        <td>Java Programming</td>
+                        <td>82</td>
+                        <td>A</td>
+                    </tr>
 
-            <tr>
-                <td>Data Structures</td>
-                <td>85</td>
-                <td>A</td>
-            </tr>
+                    <tr>
+                        <td>Digital Electronics</td>
+                        <td>77</td>
+                        <td>B+</td>
+                    </tr>
 
-            <tr>
-                <td>Java Programming</td>
-                <td>82</td>
-                <td>A</td>
-            </tr>
+                    <tr>
+                        <td>Web Development</td>
+                        <td>90</td>
+                        <td>A+</td>
+                    </tr>
 
-            <tr>
-                <td>Digital Electronics</td>
-                <td>78</td>
-                <td>B+</td>
-            </tr>
+                </tbody>
 
-            <tr>
-                <td>Web Development</td>
-                <td>90</td>
-                <td>A+</td>
-            </tr>
+            </table>
 
-        </tbody>
+        </div>
 
-    </table>
-
-</section>
+    </section>
 
 </main>
 
 
 <footer>
-
-    <p>
-        &copy; 2026 StudentHub. All rights reserved.
-    </p>
-
+    <p>© 2026 StudentHub. All rights reserved.</p>
 </footer>
-
 
 <script src="script.js"></script>
 

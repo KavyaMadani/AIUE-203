@@ -1,30 +1,30 @@
 [
     {
         "id": 1,
-        "name": "Aarav Patel",
+        "name": "Kavya Madani",
         "course": "B.Tech AI/ML",
+        "year": 2,
+        "department": "Computer Science",
+        "email": "kavya@example.com",
+        "city": "Ahmedabad"
+    },
+    {
+        "id": 2,
+        "name": "Aarav Patel",
+        "course": "B.Tech CSE",
         "year": 2,
         "department": "Computer Science",
         "email": "aarav@example.com",
         "city": "Ahmedabad"
     },
     {
-        "id": 2,
-        "name": "Kavya Shah",
-        "course": "B.Tech AI/ML",
-        "year": 2,
-        "department": "Computer Science",
-        "email": "kavya@example.com",
-        "city": "Vadodara"
-    },
-    {
         "id": 3,
-        "name": "Riya Patel",
-        "course": "B.Tech CSE",
+        "name": "Riya Shah",
+        "course": "B.Tech AI/ML",
         "year": 1,
         "department": "Computer Science",
         "email": "riya@example.com",
-        "city": "Ahmedabad"
+        "city": "Vadodara"
     },
     {
         "id": 4,
