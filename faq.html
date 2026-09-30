@@ -11,7 +11,9 @@
 
     <title>StudentHub - FAQ</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css">
 
 </head>
 
@@ -21,29 +23,39 @@
 
     <h1>StudentHub</h1>
 
-    <button id="menuButton" type="button">
+    <button
+        id="menuButton"
+        type="button"
+        aria-expanded="false">
+
         ☰ Menu
+
     </button>
 
-    <nav id="mainNav" aria-label="Main navigation">
+    <nav
+        id="mainNav"
+        aria-label="Main navigation">
 
         <a href="homepage.html">Home</a>
         <a href="about.html">About</a>
         <a href="dashboard.html">Dashboard</a>
         <a href="events.html">Events</a>
-        <a href="profile.html">Profile</a>
+        <a href="profile.html">Students</a>
         <a href="attendance.html">Attendance</a>
         <a href="results.html">Results</a>
-        <a href="register.html">Register</a>
-        <a href="login.html">Login</a>
         <a href="contact.html">Contact</a>
         <a href="faq.html">FAQ</a>
         <a href="feedback.html">Feedback</a>
+        <a href="login.html">Login</a>
 
     </nav>
 
-    <button id="themeButton" type="button">
+    <button
+        id="themeButton"
+        type="button">
+
         🌙 Dark Mode
+
     </button>
 
 </header>
@@ -51,92 +63,92 @@
 
 <main>
 
-<section>
+    <nav aria-label="Breadcrumb">
 
-    <h2>Frequently Asked Questions</h2>
+        <a href="homepage.html">
+            Home
+        </a>
 
+        <span> → FAQ</span>
 
-    <details>
-
-        <summary>
-            What is StudentHub?
-        </summary>
-
-        <p>
-            StudentHub is a student portal that provides
-            academic and university information.
-        </p>
-
-    </details>
+    </nav>
 
 
-    <details>
+    <section>
 
-        <summary>
-            How can I register?
-        </summary>
+        <h2>Frequently Asked Questions</h2>
 
         <p>
-            Open the Register page and fill in all
-            required information.
+            FAQs are loaded dynamically from
+            <strong>faqs.json</strong>.
         </p>
 
-    </details>
+
+        <label for="faqSearch">
+            Search FAQs
+        </label>
+
+        <input
+            type="search"
+            id="faqSearch"
+            placeholder="Search your question...">
 
 
-    <details>
+        <label for="faqCategory">
+            Filter by Category
+        </label>
 
-        <summary>
-            How can I login?
-        </summary>
+        <select id="faqCategory">
 
-        <p>
-            Open the Login page and enter your
-            email and password.
-        </p>
+            <option value="All">
+                All Categories
+            </option>
 
-    </details>
+            <option value="General">
+                General
+            </option>
 
+            <option value="Account">
+                Account
+            </option>
 
-    <details>
+            <option value="Academic">
+                Academic
+            </option>
 
-        <summary>
-            Where can I check attendance?
-        </summary>
+            <option value="Events">
+                Events
+            </option>
 
-        <p>
-            Open the Attendance page from the navigation menu.
-        </p>
+            <option value="Support">
+                Support
+            </option>
 
-    </details>
+            <option value="Students">
+                Students
+            </option>
 
+        </select>
 
-    <details>
-
-        <summary>
-            Where can I see results?
-        </summary>
-
-        <p>
-            Open the Results page.
-        </p>
-
-    </details>
+    </section>
 
 
-    <details>
+    <section>
 
-        <summary>
-            How can I contact StudentHub?
-        </summary>
+        <div
+            id="faqContainer"
+            class="faq-container">
 
-        <p>
-            Visit the Contact page and send us a message.
-        </p>
+        </div>
 
-    </details>
 
-</section>
+        <div
+            id="faqPagination"
+            class="pagination">
+
+        </div>
+
+    </section>
 
 </main>
 
@@ -144,7 +156,7 @@
 <footer>
 
     <p>
-        &copy; 2026 StudentHub. All rights reserved.
+        &copy; 2026 StudentHub
     </p>
 
 </footer>
@@ -153,4 +165,5 @@
 <script src="script.js"></script>
 
 </body>
+
 </html>

@@ -11,7 +11,9 @@
 
     <title>StudentHub - Events</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css">
 
 </head>
 
@@ -21,29 +23,39 @@
 
     <h1>StudentHub</h1>
 
-    <button id="menuButton" type="button">
+    <button
+        id="menuButton"
+        type="button"
+        aria-expanded="false">
+
         ☰ Menu
+
     </button>
 
-    <nav id="mainNav" aria-label="Main navigation">
+    <nav
+        id="mainNav"
+        aria-label="Main navigation">
 
         <a href="homepage.html">Home</a>
         <a href="about.html">About</a>
         <a href="dashboard.html">Dashboard</a>
         <a href="events.html">Events</a>
-        <a href="profile.html">Profile</a>
+        <a href="profile.html">Students</a>
         <a href="attendance.html">Attendance</a>
         <a href="results.html">Results</a>
-        <a href="register.html">Register</a>
-        <a href="login.html">Login</a>
         <a href="contact.html">Contact</a>
         <a href="faq.html">FAQ</a>
         <a href="feedback.html">Feedback</a>
+        <a href="login.html">Login</a>
 
     </nav>
 
-    <button id="themeButton" type="button">
+    <button
+        id="themeButton"
+        type="button">
+
         🌙 Dark Mode
+
     </button>
 
 </header>
@@ -51,61 +63,128 @@
 
 <main>
 
-<section>
+    <nav aria-label="Breadcrumb">
 
-    <h2>Upcoming Events</h2>
+        <a href="homepage.html">
+            Home
+        </a>
 
-    <div class="grid-container">
+        <span> → Events</span>
 
-        <article class="card">
-
-            <h3>💻 Coding Hackathon</h3>
-
-            <p>
-                Date: 20 September 2026
-            </p>
-
-            <p>
-                Participate in a coding competition
-                and showcase your programming skills.
-            </p>
-
-        </article>
+    </nav>
 
 
-        <article class="card">
+    <section>
 
-            <h3>🤖 AI Workshop</h3>
+        <h2>University Events</h2>
 
-            <p>
-                Date: 25 September 2026
-            </p>
-
-            <p>
-                Learn about Artificial Intelligence
-                and Machine Learning.
-            </p>
-
-        </article>
+        <p>
+            Events are loaded dynamically from
+            <strong>events.json</strong>
+            using the Fetch API.
+        </p>
 
 
-        <article class="card">
+        <!-- Search -->
 
-            <h3>🎨 Cultural Event</h3>
+        <label for="eventSearch">
+            Search Events
+        </label>
 
-            <p>
-                Date: 30 September 2026
-            </p>
+        <input
+            type="search"
+            id="eventSearch"
+            placeholder="Search by event, description or organizer">
 
-            <p>
-                Enjoy cultural activities and performances.
-            </p>
 
-        </article>
+        <!-- Filter -->
 
-    </div>
+        <label for="eventCategory">
+            Filter by Category
+        </label>
 
-</section>
+        <select id="eventCategory">
+
+            <option value="All">
+                All Categories
+            </option>
+
+            <option value="Workshop">
+                Workshop
+            </option>
+
+            <option value="Sports">
+                Sports
+            </option>
+
+            <option value="Competition">
+                Competition
+            </option>
+
+            <option value="Seminar">
+                Seminar
+            </option>
+
+            <option value="Social">
+                Social
+            </option>
+
+            <option value="Cultural">
+                Cultural
+            </option>
+
+            <option value="Exhibition">
+                Exhibition
+            </option>
+
+        </select>
+
+
+        <!-- Sort -->
+
+        <label for="eventSort">
+            Sort Events
+        </label>
+
+        <select id="eventSort">
+
+            <option value="dateAsc">
+                Date: Oldest First
+            </option>
+
+            <option value="dateDesc">
+                Date: Newest First
+            </option>
+
+            <option value="nameAsc">
+                Name: A-Z
+            </option>
+
+        </select>
+
+    </section>
+
+
+    <!-- Dynamic Data -->
+
+    <section>
+
+        <h2>Available Events</h2>
+
+        <div
+            id="eventsContainer"
+            class="data-grid">
+
+        </div>
+
+
+        <div
+            id="eventPagination"
+            class="pagination">
+
+        </div>
+
+    </section>
 
 </main>
 
@@ -113,7 +192,7 @@
 <footer>
 
     <p>
-        &copy; 2026 StudentHub. All rights reserved.
+        &copy; 2026 StudentHub
     </p>
 
 </footer>
@@ -122,4 +201,5 @@
 <script src="script.js"></script>
 
 </body>
+
 </html>

@@ -1,0 +1,137 @@
+[
+    {
+        "id": 1,
+        "title": "AI & Machine Learning Workshop",
+        "category": "Workshop",
+        "date": "2026-10-05",
+        "venue": "Innovation Lab",
+        "organizer": "AI Club",
+        "description": "Introduction to artificial intelligence and machine learning."
+    },
+    {
+        "id": 2,
+        "title": "Web Development Bootcamp",
+        "category": "Workshop",
+        "date": "2026-10-08",
+        "venue": "Computer Lab 1",
+        "organizer": "Coding Club",
+        "description": "Learn HTML, CSS and JavaScript through practical projects."
+    },
+    {
+        "id": 3,
+        "title": "Annual Sports Meet",
+        "category": "Sports",
+        "date": "2026-10-12",
+        "venue": "University Ground",
+        "organizer": "Sports Committee",
+        "description": "Annual sports competition for university students."
+    },
+    {
+        "id": 4,
+        "title": "Hackathon 2026",
+        "category": "Competition",
+        "date": "2026-10-15",
+        "venue": "Innovation Centre",
+        "organizer": "Technical Club",
+        "description": "A 24-hour coding and innovation competition."
+    },
+    {
+        "id": 5,
+        "title": "Photography Competition",
+        "category": "Competition",
+        "date": "2026-10-18",
+        "venue": "Seminar Hall",
+        "organizer": "Creative Club",
+        "description": "Students can participate in a campus photography competition."
+    },
+    {
+        "id": 6,
+        "title": "Cyber Security Awareness",
+        "category": "Seminar",
+        "date": "2026-10-20",
+        "venue": "Auditorium",
+        "organizer": "Cyber Security Club",
+        "description": "Learn about online safety, privacy and cyber security."
+    },
+    {
+        "id": 7,
+        "title": "Java Programming Seminar",
+        "category": "Seminar",
+        "date": "2026-10-22",
+        "venue": "Computer Lab 2",
+        "organizer": "Programming Club",
+        "description": "Basic Java programming concepts and object-oriented programming."
+    },
+    {
+        "id": 8,
+        "title": "Entrepreneurship Talk",
+        "category": "Seminar",
+        "date": "2026-10-25",
+        "venue": "Seminar Hall",
+        "organizer": "E-Cell",
+        "description": "An interactive session about startups and entrepreneurship."
+    },
+    {
+        "id": 9,
+        "title": "Coding Contest",
+        "category": "Competition",
+        "date": "2026-10-28",
+        "venue": "Computer Lab 3",
+        "organizer": "Coding Club",
+        "description": "Competitive programming contest for students."
+    },
+    {
+        "id": 10,
+        "title": "NSS Community Drive",
+        "category": "Social",
+        "date": "2026-11-02",
+        "venue": "University Campus",
+        "organizer": "NSS Unit",
+        "description": "Community service activity organized by NSS volunteers."
+    },
+    {
+        "id": 11,
+        "title": "Robotics Workshop",
+        "category": "Workshop",
+        "date": "2026-11-05",
+        "venue": "Robotics Lab",
+        "organizer": "Robotics Club",
+        "description": "Hands-on introduction to robotics and embedded systems."
+    },
+    {
+        "id": 12,
+        "title": "Resume Building Session",
+        "category": "Workshop",
+        "date": "2026-11-08",
+        "venue": "Seminar Hall",
+        "organizer": "Placement Cell",
+        "description": "Learn how to create an effective resume."
+    },
+    {
+        "id": 13,
+        "title": "Cultural Festival",
+        "category": "Cultural",
+        "date": "2026-11-12",
+        "venue": "Main Ground",
+        "organizer": "Cultural Committee",
+        "description": "Music, dance and cultural performances by students."
+    },
+    {
+        "id": 14,
+        "title": "Cloud Computing Workshop",
+        "category": "Workshop",
+        "date": "2026-11-15",
+        "venue": "Computer Lab 1",
+        "organizer": "IT Club",
+        "description": "Introduction to cloud computing and cloud services."
+    },
+    {
+        "id": 15,
+        "title": "Project Exhibition",
+        "category": "Exhibition",
+        "date": "2026-11-20",
+        "venue": "Innovation Centre",
+        "organizer": "University",
+        "description": "Students showcase their academic and technical projects."
+    }
+]

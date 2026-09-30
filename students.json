@@ -1,0 +1,137 @@
+[
+    {
+        "id": 1,
+        "name": "Aarav Patel",
+        "course": "B.Tech AI/ML",
+        "year": 2,
+        "department": "Computer Science",
+        "email": "aarav@example.com",
+        "city": "Ahmedabad"
+    },
+    {
+        "id": 2,
+        "name": "Kavya Shah",
+        "course": "B.Tech AI/ML",
+        "year": 2,
+        "department": "Computer Science",
+        "email": "kavya@example.com",
+        "city": "Vadodara"
+    },
+    {
+        "id": 3,
+        "name": "Riya Patel",
+        "course": "B.Tech CSE",
+        "year": 1,
+        "department": "Computer Science",
+        "email": "riya@example.com",
+        "city": "Ahmedabad"
+    },
+    {
+        "id": 4,
+        "name": "Dev Mehta",
+        "course": "B.Tech IT",
+        "year": 3,
+        "department": "Information Technology",
+        "email": "dev@example.com",
+        "city": "Surat"
+    },
+    {
+        "id": 5,
+        "name": "Neha Joshi",
+        "course": "B.Tech AI/ML",
+        "year": 2,
+        "department": "Computer Science",
+        "email": "neha@example.com",
+        "city": "Rajkot"
+    },
+    {
+        "id": 6,
+        "name": "Arjun Desai",
+        "course": "B.Tech CSE",
+        "year": 4,
+        "department": "Computer Science",
+        "email": "arjun@example.com",
+        "city": "Ahmedabad"
+    },
+    {
+        "id": 7,
+        "name": "Isha Shah",
+        "course": "B.Tech IT",
+        "year": 1,
+        "department": "Information Technology",
+        "email": "isha@example.com",
+        "city": "Vadodara"
+    },
+    {
+        "id": 8,
+        "name": "Rahul Patel",
+        "course": "B.Tech AI/ML",
+        "year": 3,
+        "department": "Computer Science",
+        "email": "rahul@example.com",
+        "city": "Surat"
+    },
+    {
+        "id": 9,
+        "name": "Ananya Mehta",
+        "course": "B.Tech CSE",
+        "year": 2,
+        "department": "Computer Science",
+        "email": "ananya@example.com",
+        "city": "Ahmedabad"
+    },
+    {
+        "id": 10,
+        "name": "Yash Shah",
+        "course": "B.Tech IT",
+        "year": 4,
+        "department": "Information Technology",
+        "email": "yash@example.com",
+        "city": "Rajkot"
+    },
+    {
+        "id": 11,
+        "name": "Dhruv Patel",
+        "course": "B.Tech AI/ML",
+        "year": 1,
+        "department": "Computer Science",
+        "email": "dhruv@example.com",
+        "city": "Ahmedabad"
+    },
+    {
+        "id": 12,
+        "name": "Mira Joshi",
+        "course": "B.Tech CSE",
+        "year": 3,
+        "department": "Computer Science",
+        "email": "mira@example.com",
+        "city": "Vadodara"
+    },
+    {
+        "id": 13,
+        "name": "Harsh Mehta",
+        "course": "B.Tech IT",
+        "year": 2,
+        "department": "Information Technology",
+        "email": "harsh@example.com",
+        "city": "Surat"
+    },
+    {
+        "id": 14,
+        "name": "Simran Patel",
+        "course": "B.Tech AI/ML",
+        "year": 4,
+        "department": "Computer Science",
+        "email": "simran@example.com",
+        "city": "Rajkot"
+    },
+    {
+        "id": 15,
+        "name": "Om Desai",
+        "course": "B.Tech CSE",
+        "year": 1,
+        "department": "Computer Science",
+        "email": "om@example.com",
+        "city": "Ahmedabad"
+    }
+]

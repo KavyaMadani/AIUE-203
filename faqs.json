@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "question": "What is StudentHub?",
+        "category": "General",
+        "answer": "StudentHub is a student portal that provides academic information, events, attendance, results and student services."
+    },
+    {
+        "id": 2,
+        "question": "How can I register?",
+        "category": "Account",
+        "answer": "Open the Registration page and enter your required student information."
+    },
+    {
+        "id": 3,
+        "question": "How can I login?",
+        "category": "Account",
+        "answer": "Open the Login page and enter your registered email and password."
+    },
+    {
+        "id": 4,
+        "question": "How can I view my attendance?",
+        "category": "Academic",
+        "answer": "Open the Attendance page from the StudentHub navigation menu."
+    },
+    {
+        "id": 5,
+        "question": "How can I view my results?",
+        "category": "Academic",
+        "answer": "Open the Results page to view your examination results."
+    },
+    {
+        "id": 6,
+        "question": "How can I update my profile?",
+        "category": "Account",
+        "answer": "Open your Profile page and update the available information."
+    },
+    {
+        "id": 7,
+        "question": "How can I register for an event?",
+        "category": "Events",
+        "answer": "Open the Events page and select the event you want to participate in."
+    },
+    {
+        "id": 8,
+        "question": "Where can I see upcoming events?",
+        "category": "Events",
+        "answer": "Upcoming university events are displayed on the Events page."
+    },
+    {
+        "id": 9,
+        "question": "How can I contact StudentHub?",
+        "category": "Support",
+        "answer": "Visit the Contact page to find support information."
+    },
+    {
+        "id": 10,
+        "question": "How can I submit feedback?",
+        "category": "Support",
+        "answer": "Visit the Feedback page and submit your feedback through the form."
+    },
+    {
+        "id": 11,
+        "question": "What courses are available?",
+        "category": "Academic",
+        "answer": "StudentHub can display information about different university courses and departments."
+    },
+    {
+        "id": 12,
+        "question": "Can I search for students?",
+        "category": "Students",
+        "answer": "Yes. The student directory provides search and filtering functionality."
+    },
+    {
+        "id": 13,
+        "question": "Can I filter events?",
+        "category": "Events",
+        "answer": "Yes. Events can be filtered according to their category."
+    },
+    {
+        "id": 14,
+        "question": "Does StudentHub support dark mode?",
+        "category": "General",
+        "answer": "Yes. The interface provides a light and dark theme option."
+    },
+    {
+        "id": 15,
+        "question": "What should I do if there is an error?",
+        "category": "Support",
+        "answer": "Check your internet connection and contact StudentHub support if the problem continues."
+    }
+]

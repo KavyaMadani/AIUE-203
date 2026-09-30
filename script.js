@@ -1,854 +1,1357 @@
-// ============================================
-// STUDENTHUB COMMON JAVASCRIPT
-// ============================================
+/* ============================================
+   STUDENTHUB - PRACTICAL 6
+   Fetch API + JSON + Search + Filter
+   Sort + Pagination + Error Handling
+   ============================================ */
 
 
-// ---------- MENU ----------
+/* ============================================
+   GLOBAL VARIABLES
+   ============================================ */
 
-const menuButton = document.getElementById("menuButton");
-const mainNav = document.getElementById("mainNav");
+let eventsData = [];
+let studentsData = [];
+let faqsData = [];
 
-if (menuButton && mainNav) {
+let eventPage = 1;
+let studentPage = 1;
+let faqPage = 1;
 
-    menuButton.addEventListener("click", function () {
+const recordsPerPage = 5;
 
-        mainNav.classList.toggle("show");
 
-        const isOpen =
-            mainNav.classList.contains("show");
+/* ============================================
+   COMMON INITIALIZATION
+   ============================================ */
 
-        menuButton.setAttribute(
-            "aria-expanded",
-            isOpen
+document.addEventListener("DOMContentLoaded", function () {
+
+    setupNavigation();
+    setupTheme();
+
+    loadEvents();
+    loadStudents();
+    loadFAQs();
+
+});
+
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+
+function setupNavigation() {
+
+    const menuButton =
+        document.getElementById("menuButton");
+
+    const mainNav =
+        document.getElementById("mainNav");
+
+    if (menuButton && mainNav) {
+
+        menuButton.addEventListener(
+            "click",
+            function () {
+
+                mainNav.classList.toggle("show");
+
+                const isOpen =
+                    mainNav.classList.contains("show");
+
+                menuButton.setAttribute(
+                    "aria-expanded",
+                    isOpen
+                );
+
+            }
         );
 
-    });
+    }
 
 }
 
 
-// ---------- DARK MODE ----------
+/* ============================================
+   DARK / LIGHT THEME
+   ============================================ */
 
-const themeButton =
-    document.getElementById("themeButton");
+function setupTheme() {
 
-if (themeButton) {
+    const themeButton =
+        document.getElementById("themeButton");
 
-    themeButton.addEventListener("click", function () {
+    const savedTheme =
+        localStorage.getItem(
+            "studenthub-theme"
+        );
 
-        document.body.classList.toggle("dark-mode");
+    if (savedTheme === "dark") {
 
-        if (
-            document.body.classList.contains("dark-mode")
-        ) {
+        document.body.classList.add(
+            "dark-theme"
+        );
+
+        if (themeButton) {
 
             themeButton.textContent =
                 "☀️ Light Mode";
 
-        } else {
+        }
 
-            themeButton.textContent =
-                "🌙 Dark Mode";
+    }
+
+    if (themeButton) {
+
+        themeButton.addEventListener(
+            "click",
+            function () {
+
+                document.body.classList.toggle(
+                    "dark-theme"
+                );
+
+                const isDark =
+                    document.body.classList.contains(
+                        "dark-theme"
+                    );
+
+                if (isDark) {
+
+                    localStorage.setItem(
+                        "studenthub-theme",
+                        "dark"
+                    );
+
+                    themeButton.textContent =
+                        "☀️ Light Mode";
+
+                } else {
+
+                    localStorage.setItem(
+                        "studenthub-theme",
+                        "light"
+                    );
+
+                    themeButton.textContent =
+                        "🌙 Dark Mode";
+
+                }
+
+            }
+        );
+
+    }
+
+}
+
+
+/* ============================================
+   FETCH EVENTS
+   ============================================ */
+
+async function loadEvents() {
+
+    const container =
+        document.getElementById("eventsContainer");
+
+    if (!container) {
+        return;
+    }
+
+    showLoading(container);
+
+    try {
+
+        const response =
+            await fetch("events.json");
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to load events."
+            );
 
         }
+
+        eventsData =
+            await response.json();
+
+        displayEvents();
+
+        setupEventControls();
+
+    } catch (error) {
+
+        showError(
+            container,
+            error.message
+        );
+
+        console.error(
+            "Events Error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* ============================================
+   DISPLAY EVENTS
+   ============================================ */
+
+function displayEvents() {
+
+    const container =
+        document.getElementById(
+            "eventsContainer"
+        );
+
+    if (!container) {
+        return;
+    }
+
+    const searchInput =
+        document.getElementById(
+            "eventSearch"
+        );
+
+    const categoryFilter =
+        document.getElementById(
+            "eventCategory"
+        );
+
+    const sortSelect =
+        document.getElementById(
+            "eventSort"
+        );
+
+
+    let data =
+        [...eventsData];
+
+
+    /* SEARCH */
+
+    const search =
+        searchInput
+            ? searchInput.value
+                .toLowerCase()
+                .trim()
+            : "";
+
+
+    if (search) {
+
+        data =
+            data.filter(function (event) {
+
+                return (
+                    event.title
+                        .toLowerCase()
+                        .includes(search)
+
+                    ||
+
+                    event.description
+                        .toLowerCase()
+                        .includes(search)
+
+                    ||
+
+                    event.organizer
+                        .toLowerCase()
+                        .includes(search)
+                );
+
+            });
+
+    }
+
+
+    /* FILTER */
+
+    const category =
+        categoryFilter
+            ? categoryFilter.value
+            : "All";
+
+
+    if (category !== "All") {
+
+        data =
+            data.filter(function (event) {
+
+                return event.category === category;
+
+            });
+
+    }
+
+
+    /* SORT */
+
+    const sort =
+        sortSelect
+            ? sortSelect.value
+            : "dateAsc";
+
+
+    if (sort === "dateAsc") {
+
+        data.sort(function (a, b) {
+
+            return new Date(a.date) -
+                   new Date(b.date);
+
+        });
+
+    }
+
+
+    if (sort === "dateDesc") {
+
+        data.sort(function (a, b) {
+
+            return new Date(b.date) -
+                   new Date(a.date);
+
+        });
+
+    }
+
+
+    if (sort === "nameAsc") {
+
+        data.sort(function (a, b) {
+
+            return a.title.localeCompare(
+                b.title
+            );
+
+        });
+
+    }
+
+
+    /* PAGINATION */
+
+    const totalPages =
+        Math.ceil(
+            data.length / recordsPerPage
+        );
+
+
+    if (eventPage > totalPages) {
+
+        eventPage =
+            Math.max(totalPages, 1);
+
+    }
+
+
+    const start =
+        (eventPage - 1) *
+        recordsPerPage;
+
+
+    const pageData =
+        data.slice(
+            start,
+            start + recordsPerPage
+        );
+
+
+    /* RENDER */
+
+    if (pageData.length === 0) {
+
+        container.innerHTML =
+            `<p class="no-data">
+                No events found.
+            </p>`;
+
+    } else {
+
+        container.innerHTML =
+            pageData
+                .map(function (event) {
+
+                    return `
+                        <article class="data-card">
+
+                            <h3>${event.title}</h3>
+
+                            <p>
+                                <strong>Category:</strong>
+                                ${event.category}
+                            </p>
+
+                            <p>
+                                <strong>Date:</strong>
+                                ${event.date}
+                            </p>
+
+                            <p>
+                                <strong>Venue:</strong>
+                                ${event.venue}
+                            </p>
+
+                            <p>
+                                <strong>Organizer:</strong>
+                                ${event.organizer}
+                            </p>
+
+                            <p>
+                                ${event.description}
+                            </p>
+
+                        </article>
+                    `;
+
+                })
+                .join("");
+
+    }
+
+
+    renderPagination(
+        "eventPagination",
+        eventPage,
+        totalPages,
+        function (page) {
+
+            eventPage = page;
+
+            displayEvents();
+
+        }
+    );
+
+}
+
+
+/* ============================================
+   EVENT CONTROLS
+   ============================================ */
+
+function setupEventControls() {
+
+    const searchInput =
+        document.getElementById(
+            "eventSearch"
+        );
+
+    const categoryFilter =
+        document.getElementById(
+            "eventCategory"
+        );
+
+    const sortSelect =
+        document.getElementById(
+            "eventSort"
+        );
+
+
+    if (searchInput) {
+
+        searchInput.addEventListener(
+            "input",
+            function () {
+
+                eventPage = 1;
+
+                displayEvents();
+
+            }
+        );
+
+    }
+
+
+    if (categoryFilter) {
+
+        categoryFilter.addEventListener(
+            "change",
+            function () {
+
+                eventPage = 1;
+
+                displayEvents();
+
+            }
+        );
+
+    }
+
+
+    if (sortSelect) {
+
+        sortSelect.addEventListener(
+            "change",
+            function () {
+
+                eventPage = 1;
+
+                displayEvents();
+
+            }
+        );
+
+    }
+
+}
+
+
+/* ============================================
+   FETCH STUDENTS
+   ============================================ */
+
+async function loadStudents() {
+
+    const container =
+        document.getElementById(
+            "studentsContainer"
+        );
+
+    if (!container) {
+        return;
+    }
+
+    showLoading(container);
+
+    try {
+
+        const response =
+            await fetch("students.json");
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to load students."
+            );
+
+        }
+
+        studentsData =
+            await response.json();
+
+        displayStudents();
+
+        setupStudentControls();
+
+    } catch (error) {
+
+        showError(
+            container,
+            error.message
+        );
+
+        console.error(
+            "Students Error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* ============================================
+   DISPLAY STUDENTS
+   ============================================ */
+
+function displayStudents() {
+
+    const container =
+        document.getElementById(
+            "studentsContainer"
+        );
+
+    if (!container) {
+        return;
+    }
+
+
+    const searchInput =
+        document.getElementById(
+            "studentSearch"
+        );
+
+    const courseFilter =
+        document.getElementById(
+            "studentCourse"
+        );
+
+    const sortSelect =
+        document.getElementById(
+            "studentSort"
+        );
+
+
+    let data =
+        [...studentsData];
+
+
+    /* SEARCH */
+
+    const search =
+        searchInput
+            ? searchInput.value
+                .toLowerCase()
+                .trim()
+            : "";
+
+
+    if (search) {
+
+        data =
+            data.filter(function (student) {
+
+                return (
+
+                    student.name
+                        .toLowerCase()
+                        .includes(search)
+
+                    ||
+
+                    student.course
+                        .toLowerCase()
+                        .includes(search)
+
+                    ||
+
+                    student.city
+                        .toLowerCase()
+                        .includes(search)
+
+                );
+
+            });
+
+    }
+
+
+    /* FILTER */
+
+    const course =
+        courseFilter
+            ? courseFilter.value
+            : "All";
+
+
+    if (course !== "All") {
+
+        data =
+            data.filter(function (student) {
+
+                return student.course === course;
+
+            });
+
+    }
+
+
+    /* SORT */
+
+    const sort =
+        sortSelect
+            ? sortSelect.value
+            : "nameAsc";
+
+
+    if (sort === "nameAsc") {
+
+        data.sort(function (a, b) {
+
+            return a.name.localeCompare(
+                b.name
+            );
+
+        });
+
+    }
+
+
+    if (sort === "nameDesc") {
+
+        data.sort(function (a, b) {
+
+            return b.name.localeCompare(
+                a.name
+            );
+
+        });
+
+    }
+
+
+    if (sort === "yearAsc") {
+
+        data.sort(function (a, b) {
+
+            return a.year - b.year;
+
+        });
+
+    }
+
+
+    /* PAGINATION */
+
+    const totalPages =
+        Math.ceil(
+            data.length / recordsPerPage
+        );
+
+
+    if (studentPage > totalPages) {
+
+        studentPage =
+            Math.max(totalPages, 1);
+
+    }
+
+
+    const start =
+        (studentPage - 1) *
+        recordsPerPage;
+
+
+    const pageData =
+        data.slice(
+            start,
+            start + recordsPerPage
+        );
+
+
+    /* RENDER */
+
+    if (pageData.length === 0) {
+
+        container.innerHTML =
+            `<p class="no-data">
+                No students found.
+            </p>`;
+
+    } else {
+
+        container.innerHTML =
+            pageData
+                .map(function (student) {
+
+                    return `
+                        <article class="data-card">
+
+                            <h3>
+                                ${student.name}
+                            </h3>
+
+                            <p>
+                                <strong>Course:</strong>
+                                ${student.course}
+                            </p>
+
+                            <p>
+                                <strong>Year:</strong>
+                                ${student.year}
+                            </p>
+
+                            <p>
+                                <strong>Department:</strong>
+                                ${student.department}
+                            </p>
+
+                            <p>
+                                <strong>Email:</strong>
+                                ${student.email}
+                            </p>
+
+                            <p>
+                                <strong>City:</strong>
+                                ${student.city}
+                            </p>
+
+                        </article>
+                    `;
+
+                })
+                .join("");
+
+    }
+
+
+    renderPagination(
+        "studentPagination",
+        studentPage,
+        totalPages,
+        function (page) {
+
+            studentPage = page;
+
+            displayStudents();
+
+        }
+    );
+
+}
+
+
+/* ============================================
+   STUDENT CONTROLS
+   ============================================ */
+
+function setupStudentControls() {
+
+    const searchInput =
+        document.getElementById(
+            "studentSearch"
+        );
+
+    const courseFilter =
+        document.getElementById(
+            "studentCourse"
+        );
+
+    const sortSelect =
+        document.getElementById(
+            "studentSort"
+        );
+
+
+    if (searchInput) {
+
+        searchInput.addEventListener(
+            "input",
+            function () {
+
+                studentPage = 1;
+
+                displayStudents();
+
+            }
+        );
+
+    }
+
+
+    if (courseFilter) {
+
+        courseFilter.addEventListener(
+            "change",
+            function () {
+
+                studentPage = 1;
+
+                displayStudents();
+
+            }
+        );
+
+    }
+
+
+    if (sortSelect) {
+
+        sortSelect.addEventListener(
+            "change",
+            function () {
+
+                studentPage = 1;
+
+                displayStudents();
+
+            }
+        );
+
+    }
+
+}
+
+
+/* ============================================
+   FETCH FAQs
+   ============================================ */
+
+async function loadFAQs() {
+
+    const container =
+        document.getElementById(
+            "faqContainer"
+        );
+
+    if (!container) {
+        return;
+    }
+
+    showLoading(container);
+
+    try {
+
+        const response =
+            await fetch("faqs.json");
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to load FAQs."
+            );
+
+        }
+
+        faqsData =
+            await response.json();
+
+        displayFAQs();
+
+        setupFAQControls();
+
+    } catch (error) {
+
+        showError(
+            container,
+            error.message
+        );
+
+        console.error(
+            "FAQ Error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* ============================================
+   DISPLAY FAQs
+   ============================================ */
+
+function displayFAQs() {
+
+    const container =
+        document.getElementById(
+            "faqContainer"
+        );
+
+    if (!container) {
+        return;
+    }
+
+
+    const searchInput =
+        document.getElementById(
+            "faqSearch"
+        );
+
+    const categoryFilter =
+        document.getElementById(
+            "faqCategory"
+        );
+
+
+    let data =
+        [...faqsData];
+
+
+    /* SEARCH */
+
+    const search =
+        searchInput
+            ? searchInput.value
+                .toLowerCase()
+                .trim()
+            : "";
+
+
+    if (search) {
+
+        data =
+            data.filter(function (faq) {
+
+                return (
+
+                    faq.question
+                        .toLowerCase()
+                        .includes(search)
+
+                    ||
+
+                    faq.answer
+                        .toLowerCase()
+                        .includes(search)
+
+                );
+
+            });
+
+    }
+
+
+    /* FILTER */
+
+    const category =
+        categoryFilter
+            ? categoryFilter.value
+            : "All";
+
+
+    if (category !== "All") {
+
+        data =
+            data.filter(function (faq) {
+
+                return faq.category === category;
+
+            });
+
+    }
+
+
+    /* PAGINATION */
+
+    const totalPages =
+        Math.ceil(
+            data.length / recordsPerPage
+        );
+
+
+    if (faqPage > totalPages) {
+
+        faqPage =
+            Math.max(totalPages, 1);
+
+    }
+
+
+    const start =
+        (faqPage - 1) *
+        recordsPerPage;
+
+
+    const pageData =
+        data.slice(
+            start,
+            start + recordsPerPage
+        );
+
+
+    /* RENDER */
+
+    if (pageData.length === 0) {
+
+        container.innerHTML =
+            `<p class="no-data">
+                No FAQs found.
+            </p>`;
+
+    } else {
+
+        container.innerHTML =
+            pageData
+                .map(function (faq) {
+
+                    return `
+                        <article class="faq-item">
+
+                            <button
+                                class="faq-question"
+                                type="button"
+                                aria-expanded="false">
+
+                                ${faq.question}
+
+                            </button>
+
+                            <div
+                                class="faq-answer"
+                                hidden>
+
+                                <p>
+                                    ${faq.answer}
+                                </p>
+
+                            </div>
+
+                        </article>
+                    `;
+
+                })
+                .join("");
+
+
+        /* FAQ CLICK EVENTS */
+
+        const buttons =
+            container.querySelectorAll(
+                ".faq-question"
+            );
+
+
+        buttons.forEach(function (button) {
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    const answer =
+                        button.nextElementSibling;
+
+                    const isOpen =
+                        button.getAttribute(
+                            "aria-expanded"
+                        ) === "true";
+
+
+                    button.setAttribute(
+                        "aria-expanded",
+                        !isOpen
+                    );
+
+
+                    answer.hidden =
+                        isOpen;
+
+                }
+            );
+
+        });
+
+    }
+
+
+    renderPagination(
+        "faqPagination",
+        faqPage,
+        totalPages,
+        function (page) {
+
+            faqPage = page;
+
+            displayFAQs();
+
+        }
+    );
+
+}
+
+
+/* ============================================
+   FAQ CONTROLS
+   ============================================ */
+
+function setupFAQControls() {
+
+    const searchInput =
+        document.getElementById(
+            "faqSearch"
+        );
+
+    const categoryFilter =
+        document.getElementById(
+            "faqCategory"
+        );
+
+
+    if (searchInput) {
+
+        searchInput.addEventListener(
+            "input",
+            function () {
+
+                faqPage = 1;
+
+                displayFAQs();
+
+            }
+        );
+
+    }
+
+
+    if (categoryFilter) {
+
+        categoryFilter.addEventListener(
+            "change",
+            function () {
+
+                faqPage = 1;
+
+                displayFAQs();
+
+            }
+        );
+
+    }
+
+}
+
+
+/* ============================================
+   PAGINATION
+   ============================================ */
+
+function renderPagination(
+    containerId,
+    currentPage,
+    totalPages,
+    changePage
+) {
+
+    const container =
+        document.getElementById(
+            containerId
+        );
+
+    if (!container) {
+        return;
+    }
+
+
+    if (totalPages <= 1) {
+
+        container.innerHTML = "";
+
+        return;
+
+    }
+
+
+    let html = "";
+
+
+    if (currentPage > 1) {
+
+        html += `
+            <button
+                class="page-button"
+                data-page="${currentPage - 1}">
+
+                Previous
+
+            </button>
+        `;
+
+    }
+
+
+    for (
+        let i = 1;
+        i <= totalPages;
+        i++
+    ) {
+
+        html += `
+            <button
+                class="page-button ${
+                    i === currentPage
+                        ? "active-page"
+                        : ""
+                }"
+                data-page="${i}">
+
+                ${i}
+
+            </button>
+        `;
+
+    }
+
+
+    if (currentPage < totalPages) {
+
+        html += `
+            <button
+                class="page-button"
+                data-page="${currentPage + 1}">
+
+                Next
+
+            </button>
+        `;
+
+    }
+
+
+    container.innerHTML = html;
+
+
+    const buttons =
+        container.querySelectorAll(
+            ".page-button"
+        );
+
+
+    buttons.forEach(function (button) {
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                const page =
+                    Number(
+                        button.dataset.page
+                    );
+
+                changePage(page);
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }
+        );
 
     });
 
 }
 
 
-// =================================================
-// PRACTICAL 5 REGISTRATION VALIDATION
-// =================================================
-
-const registrationForm =
-    document.getElementById("registrationForm");
-
-
-if (registrationForm) {
-
-
-    // ---------- REGEX ----------
-
-    const nameRegex =
-        /^[A-Za-z ]{2,50}$/;
-
-    const emailRegex =
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    const mobileRegex =
-        /^[6-9][0-9]{9}$/;
-
-    /*
-       Password rules:
-       At least 8 characters
-       One uppercase letter
-       One lowercase letter
-       One number
-       One special character
-    */
-
-    const passwordRegex =
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
-
-
-    // ---------- ELEMENTS ----------
-
-    const name =
-        document.getElementById("name");
-
-    const email =
-        document.getElementById("email");
-
-    const mobile =
-        document.getElementById("mobile");
-
-    const password =
-        document.getElementById("password");
-
-    const confirmPassword =
-        document.getElementById("confirmPassword");
-
-    const course =
-        document.getElementById("course");
-
-    const year =
-        document.getElementById("year");
-
-    const terms =
-        document.getElementById("terms");
-
-
-    // ---------- ERROR FUNCTION ----------
-
-    function showError(
-        input,
-        errorId,
-        message
-    ) {
-
-        const error =
-            document.getElementById(errorId);
-
-        error.textContent = message;
-
-        input.classList.add("invalid");
-        input.classList.remove("valid");
-
-        input.setAttribute(
-            "aria-invalid",
-            "true"
-        );
-
-    }
-
-
-    // ---------- SUCCESS FUNCTION ----------
-
-    function showSuccess(
-        input,
-        errorId
-    ) {
-
-        const error =
-            document.getElementById(errorId);
-
-        error.textContent = "";
-
-        input.classList.remove("invalid");
-        input.classList.add("valid");
-
-        input.setAttribute(
-            "aria-invalid",
-            "false"
-        );
-
-    }
-
-
-    // =================================================
-    // NAME VALIDATION
-    // =================================================
-
-    function validateName() {
-
-        const value =
-            name.value.trim();
-
-        if (value === "") {
-
-            showError(
-                name,
-                "nameError",
-                "Name is required."
-            );
-
-            return false;
-        }
-
-        if (!nameRegex.test(value)) {
-
-            showError(
-                name,
-                "nameError",
-                "Name should contain only letters and spaces."
-            );
-
-            return false;
-        }
-
-        showSuccess(
-            name,
-            "nameError"
-        );
-
-        return true;
-    }
-
-
-    // =================================================
-    // EMAIL VALIDATION
-    // =================================================
-
-    function validateEmail() {
-
-        const value =
-            email.value.trim();
-
-        if (value === "") {
-
-            showError(
-                email,
-                "emailError",
-                "Email is required."
-            );
-
-            return false;
-        }
-
-        if (!emailRegex.test(value)) {
-
-            showError(
-                email,
-                "emailError",
-                "Enter a valid email address."
-            );
-
-            return false;
-        }
-
-        showSuccess(
-            email,
-            "emailError"
-        );
-
-        return true;
-    }
-
-
-    // =================================================
-    // MOBILE VALIDATION
-    // =================================================
-
-    function validateMobile() {
-
-        const value =
-            mobile.value.trim();
-
-        if (value === "") {
-
-            showError(
-                mobile,
-                "mobileError",
-                "Mobile number is required."
-            );
-
-            return false;
-        }
-
-        if (!mobileRegex.test(value)) {
-
-            showError(
-                mobile,
-                "mobileError",
-                "Enter a valid 10-digit Indian mobile number."
-            );
-
-            return false;
-        }
-
-        showSuccess(
-            mobile,
-            "mobileError"
-        );
-
-        return true;
-    }
-
-
-    // =================================================
-    // PASSWORD VALIDATION
-    // =================================================
-
-    function validatePassword() {
-
-        const value =
-            password.value;
-
-        if (value === "") {
-
-            showError(
-                password,
-                "passwordError",
-                "Password is required."
-            );
-
-            return false;
-        }
-
-        if (!passwordRegex.test(value)) {
-
-            showError(
-                password,
-                "passwordError",
-                "Password must contain 8+ characters, uppercase, lowercase, number and special character."
-            );
-
-            return false;
-        }
-
-        showSuccess(
-            password,
-            "passwordError"
-        );
-
-        return true;
-    }
-
-
-    // =================================================
-    // PASSWORD STRENGTH METER
-    // =================================================
-
-    password.addEventListener(
-        "input",
-        function () {
-
-            const value =
-                password.value;
-
-            const strength =
-                document.getElementById(
-                    "passwordStrength"
-                );
-
-            let score = 0;
-
-            if (value.length >= 8)
-                score++;
-
-            if (/[a-z]/.test(value))
-                score++;
-
-            if (/[A-Z]/.test(value))
-                score++;
-
-            if (/[0-9]/.test(value))
-                score++;
-
-            if (/[@$!%*?&]/.test(value))
-                score++;
-
-
-            if (value.length === 0) {
-
-                strength.textContent =
-                    "Password strength: —";
-
-            } else if (score <= 2) {
-
-                strength.textContent =
-                    "Password strength: Weak";
-
-            } else if (score === 3) {
-
-                strength.textContent =
-                    "Password strength: Medium";
-
-            } else if (score === 4) {
-
-                strength.textContent =
-                    "Password strength: Good";
-
-            } else {
-
-                strength.textContent =
-                    "Password strength: Strong";
-
-            }
-
-            validatePassword();
-
-        }
-    );
-
-
-    // =================================================
-    // CONFIRM PASSWORD
-    // =================================================
-
-    function validateConfirmPassword() {
-
-        const value =
-            confirmPassword.value;
-
-        if (value === "") {
-
-            showError(
-                confirmPassword,
-                "confirmPasswordError",
-                "Please confirm your password."
-            );
-
-            return false;
-        }
-
-        if (
-            value !== password.value
-        ) {
-
-            showError(
-                confirmPassword,
-                "confirmPasswordError",
-                "Passwords do not match."
-            );
-
-            return false;
-        }
-
-        showSuccess(
-            confirmPassword,
-            "confirmPasswordError"
-        );
-
-        return true;
-    }
-
-
-    // =================================================
-    // COURSE
-    // =================================================
-
-    function validateCourse() {
-
-        if (course.value === "") {
-
-            showError(
-                course,
-                "courseError",
-                "Please select your course."
-            );
-
-            return false;
-        }
-
-        showSuccess(
-            course,
-            "courseError"
-        );
-
-        return true;
-    }
-
-
-    // =================================================
-    // YEAR
-    // =================================================
-
-    function validateYear() {
-
-        if (year.value === "") {
-
-            showError(
-                year,
-                "yearError",
-                "Please select your year."
-            );
-
-            return false;
-        }
-
-        showSuccess(
-            year,
-            "yearError"
-        );
-
-        return true;
-    }
-
-
-    // =================================================
-    // GENDER
-    // =================================================
-
-    function validateGender() {
-
-        const gender =
-            document.querySelector(
-                'input[name="gender"]:checked'
-            );
-
-        const error =
-            document.getElementById(
-                "genderError"
-            );
-
-        if (!gender) {
-
-            error.textContent =
-                "Please select your gender.";
-
-            return false;
-        }
-
-        error.textContent = "";
-
-        return true;
-    }
-
-
-    // =================================================
-    // TERMS
-    // =================================================
-
-    function validateTerms() {
-
-        if (!terms.checked) {
-
-            const error =
-                document.getElementById(
-                    "termsError"
-                );
-
-            error.textContent =
-                "You must accept the Terms and Conditions.";
-
-            return false;
-        }
-
-        document.getElementById(
-            "termsError"
-        ).textContent = "";
-
-        return true;
-    }
-
-
-    // =================================================
-    // REAL-TIME VALIDATION
-    // =================================================
-
-    name.addEventListener(
-        "blur",
-        validateName
-    );
-
-    email.addEventListener(
-        "blur",
-        validateEmail
-    );
-
-    mobile.addEventListener(
-        "blur",
-        validateMobile
-    );
-
-    password.addEventListener(
-        "blur",
-        validatePassword
-    );
-
-    confirmPassword.addEventListener(
-        "blur",
-        validateConfirmPassword
-    );
-
-    course.addEventListener(
-        "change",
-        validateCourse
-    );
-
-    year.addEventListener(
-        "change",
-        validateYear
-    );
-
-    terms.addEventListener(
-        "change",
-        validateTerms
-    );
-
-
-    // =================================================
-    // FORM SUBMISSION
-    // =================================================
-
-    registrationForm.addEventListener(
-        "submit",
-        function (event) {
-
-            event.preventDefault();
-
-
-            const validName =
-                validateName();
-
-            const validEmail =
-                validateEmail();
-
-            const validMobile =
-                validateMobile();
-
-            const validPassword =
-                validatePassword();
-
-            const validConfirm =
-                validateConfirmPassword();
-
-            const validCourse =
-                validateCourse();
-
-            const validYear =
-                validateYear();
-
-            const validGender =
-                validateGender();
-
-            const validTerms =
-                validateTerms();
-
-
-            const allValid =
-                validName &&
-                validEmail &&
-                validMobile &&
-                validPassword &&
-                validConfirm &&
-                validCourse &&
-                validYear &&
-                validGender &&
-                validTerms;
-
-
-            const summary =
-                document.getElementById(
-                    "formSummary"
-                );
-
-
-            if (!allValid) {
-
-                summary.hidden = false;
-
-                summary.textContent =
-                    "❌ Please correct the errors in the form before submitting.";
-
-                return;
-            }
-
-
-            // SUCCESS
-
-            summary.hidden = true;
-
-            const success =
-                document.getElementById(
-                    "successMessage"
-                );
-
-            success.hidden = false;
-
-            success.textContent =
-                "✅ Registration successful! Welcome to StudentHub.";
-
-            registrationForm.reset();
-
-
-            // Remove validation classes
-
-            const inputs =
-                registrationForm.querySelectorAll(
-                    "input, select"
-                );
-
-            inputs.forEach(
-                function (input) {
-
-                    input.classList.remove(
-                        "valid",
-                        "invalid"
-                    );
-
-                    input.removeAttribute(
-                        "aria-invalid"
-                    );
-
-                }
-            );
-
-
-            document.getElementById(
-                "passwordStrength"
-            ).textContent =
-                "Password strength: —";
-
-        }
-    );
-
-
-    // =================================================
-    // RESET FORM
-    // =================================================
-
-    registrationForm.addEventListener(
-        "reset",
-        function () {
-
-            setTimeout(
-                function () {
-
-                    const errors =
-                        registrationForm.querySelectorAll(
-                            ".error-message"
-                        );
-
-                    errors.forEach(
-                        function (error) {
-                            error.textContent = "";
-                        }
-                    );
-
-
-                    const inputs =
-                        registrationForm.querySelectorAll(
-                            "input, select"
-                        );
-
-                    inputs.forEach(
-                        function (input) {
-
-                            input.classList.remove(
-                                "valid",
-                                "invalid"
-                            );
-
-                            input.removeAttribute(
-                                "aria-invalid"
-                            );
-
-                        }
-                    );
-
-
-                    document.getElementById(
-                        "formSummary"
-                    ).hidden = true;
-
-
-                    document.getElementById(
-                        "successMessage"
-                    ).hidden = true;
-
-
-                    document.getElementById(
-                        "passwordStrength"
-                    ).textContent =
-                        "Password strength: —";
-
-                },
-                0
-            );
-
-        }
-    );
+/* ============================================
+   LOADING
+   ============================================ */
+
+function showLoading(container) {
+
+    container.innerHTML = `
+        <div class="loading">
+            Loading data...
+        </div>
+    `;
 
 }
 
 
-// =================================================
-// CONTACT FORM
-// =================================================
+/* ============================================
+   ERROR
+   ============================================ */
 
-const contactForm =
-    document.getElementById("contactForm");
+function showError(
+    container,
+    message
+) {
 
-if (contactForm) {
+    container.innerHTML = `
+        <div class="error-message">
 
-    contactForm.addEventListener(
-        "submit",
-        function (event) {
+            <h3>
+                Unable to load data
+            </h3>
 
-            event.preventDefault();
+            <p>
+                ${message}
+            </p>
 
-            alert(
-                "Your message has been submitted successfully."
-            );
+            <p>
+                Please check the JSON file
+                and try again.
+            </p>
 
-            contactForm.reset();
-
-        }
-    );
-
-}
-
-
-// =================================================
-// FEEDBACK FORM
-// =================================================
-
-const feedbackForm =
-    document.getElementById("feedbackForm");
-
-if (feedbackForm) {
-
-    feedbackForm.addEventListener(
-        "submit",
-        function (event) {
-
-            event.preventDefault();
-
-            alert(
-                "Thank you for your valuable feedback!"
-            );
-
-            feedbackForm.reset();
-
-        }
-    );
-
-}
-
-
-// =================================================
-// LOGIN FORM
-// =================================================
-
-const loginForm =
-    document.getElementById("loginForm");
-
-if (loginForm) {
-
-    loginForm.addEventListener(
-        "submit",
-        function (event) {
-
-            event.preventDefault();
-
-            alert(
-                "Login successful! Welcome to StudentHub."
-            );
-
-        }
-    );
+        </div>
+    `;
 
 }

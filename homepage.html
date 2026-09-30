@@ -1,103 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
     <title>StudentHub - Home</title>
-    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
 </head>
 
 <body>
 
 <header>
+
     <h1>StudentHub</h1>
 
-    <button id="menuButton" type="button">☰ Menu</button>
+    <button
+        id="menuButton"
+        type="button"
+        aria-expanded="false">
 
-    <nav id="mainNav" aria-label="Main navigation">
+        ☰ Menu
+
+    </button>
+
+    <nav
+        id="mainNav"
+        aria-label="Main navigation">
+
         <a href="homepage.html">Home</a>
         <a href="about.html">About</a>
         <a href="dashboard.html">Dashboard</a>
         <a href="events.html">Events</a>
-        <a href="profile.html">Profile</a>
+        <a href="profile.html">Students</a>
         <a href="attendance.html">Attendance</a>
         <a href="results.html">Results</a>
-        <a href="register.html">Register</a>
-        <a href="login.html">Login</a>
         <a href="contact.html">Contact</a>
         <a href="faq.html">FAQ</a>
         <a href="feedback.html">Feedback</a>
+        <a href="login.html">Login</a>
+
     </nav>
 
-    <button id="themeButton" type="button">🌙 Dark Mode</button>
+    <button
+        id="themeButton"
+        type="button">
+
+        🌙 Dark Mode
+
+    </button>
+
 </header>
 
-<main id="main-content">
 
-    <section class="hero">
+<main>
+
+    <section>
+
         <h2>Welcome to StudentHub</h2>
 
         <p>
-            StudentHub is a student portal where students can
-            manage academic information, attendance, results,
-            events and personal details.
+            StudentHub is a student portal for managing
+            academic information, events and student services.
         </p>
 
-        <a class="button" href="register.html">Register Now</a>
-        <a class="button secondary" href="login.html">Login</a>
+        <p>
+            This version uses JavaScript Fetch API to
+            dynamically load JSON data.
+        </p>
+
     </section>
+
 
     <section>
-        <h2>StudentHub Features</h2>
 
-        <div class="grid-container">
+        <h2>Latest Events</h2>
 
-            <article class="card">
-                <h3>📚 Academic Results</h3>
-                <p>View your semester marks and grades.</p>
-                <a href="results.html">View Results</a>
-            </article>
-
-            <article class="card">
-                <h3>📊 Attendance</h3>
-                <p>Check your subject-wise attendance.</p>
-                <a href="attendance.html">View Attendance</a>
-            </article>
-
-            <article class="card">
-                <h3>🎉 Events</h3>
-                <p>Find upcoming college events and activities.</p>
-                <a href="events.html">View Events</a>
-            </article>
-
-            <article class="card">
-                <h3>👤 Profile</h3>
-                <p>View your personal and academic information.</p>
-                <a href="profile.html">View Profile</a>
-            </article>
+        <div
+            id="eventsContainer"
+            class="data-grid">
 
         </div>
-    </section>
 
-    <section class="highlight">
-        <h2>New Student?</h2>
-        <p>
-            Create your StudentHub account using our registration
-            form with frontend validation.
-        </p>
+        <div
+            id="eventPagination"
+            class="pagination">
 
-        <a class="button" href="register.html">
-            Create Account
-        </a>
+        </div>
+
     </section>
 
 </main>
 
+
 <footer>
-    <p>&copy; 2026 StudentHub. All rights reserved.</p>
+
+    <p>
+        &copy; 2026 StudentHub
+    </p>
+
 </footer>
+
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
